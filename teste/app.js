@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, fadeOptions);
 
     initChatIA();
+    console.log("Chat iniciado");
 
     function bindSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
