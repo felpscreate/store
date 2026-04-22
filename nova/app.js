@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const specsFormatted = versao.specs ? versao.specs.replace(/\n/g, '<br>') : "Especificações não disponíveis.";
 
-            let slidesHtml = `<div class="mini-slide"><img src="./Imagens/${img1}" alt="1" onerror="this.onerror=null; this.src='./ImagensProduto/${img1}';"></div>`;
+            let slidesHtml = `<div class="mini-slide"><img src="./ImagensProduto/${img1}" alt="1" onerror="this.onerror=null; console.warn('Imagem não encontrada:', '${img1}'); this.src='./assets/placeholder.png';"></div>`;
             let dotsHtml = `<div class="mini-dot active" data-tgt="0"></div>`;
             if (img2) {
-                slidesHtml += `<div class="mini-slide"><img src="./Imagens/${img2}" alt="2" onerror="this.parentElement.style.display='none'; this.parentElement.classList.add('failed-slide');"></div>`;
+                slidesHtml += `<div class="mini-slide"><img src="./ImagensProduto/${img2}" alt="2" onerror="this.onerror=null; console.warn('Imagem não encontrada:', '${img2}'); this.src='./assets/placeholder.png';"></div>`;
                 dotsHtml += `<div class="mini-dot" data-tgt="1"></div>`;
             }
             if (img3) {
-                slidesHtml += `<div class="mini-slide"><img src="./Imagens/${img3}" alt="3" onerror="this.parentElement.style.display='none'; this.parentElement.classList.add('failed-slide');"></div>`;
+                slidesHtml += `<div class="mini-slide"><img src="./ImagensProduto/${img3}" alt="3" onerror="this.onerror=null; console.warn('Imagem não encontrada:', '${img3}'); this.src='./assets/placeholder.png';"></div>`;
                 dotsHtml += `<div class="mini-dot" data-tgt="2"></div>`;
             }
             
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function carregarProdutos() {
         // Load Data with anti-cache
-        fetch('./data/siteData.json?v=' + new Date().getTime())
+        fetch('./data/siteData.json?v=' + Date.now())
             .then(res => res.json())
             .then(data => {
                 console.log("JSON carregado:", data);
@@ -221,6 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!data || !Array.isArray(data.produtos)) {
                     console.error("JSON inválido ou array de produtos ausente");
                     return;
+                }
+                
+                if (data.produtos.length === 0) {
+                    console.error("Sem produtos no JSON");
+                } else {
+                    console.log("Produtos:", data.produtos);
                 }
                 
                 // Apply Configs
@@ -273,9 +279,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         const card = document.createElement('div');
                         card.className = 'product-card fade-in';
+                        
+                        // We will build the innerHTML and add the onerror using an event listener or inline
                         card.innerHTML = `
                             <div class="image-container">
-                                <img src="Imagens/${imgProduto}" alt="${nomeProduto}" class="img-main">
+                                <img src="./ImagensProduto/${imgProduto}" alt="${nomeProduto}" class="img-main" onerror="this.onerror=null; console.warn('Imagem não encontrada:', '${imgProduto}'); this.src='./assets/placeholder.png';">
                                 <div class="tile-button-wrapper open-modal-btn">
                                     <span class="tile-button tile-button-high-contrast">
                                         <svg class="icon-control icon-control-plus tile-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">

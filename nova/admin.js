@@ -92,7 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show current image
         if(prod.imagem) {
-            prodImgPreview.src = `Imagens/${prod.imagem}`;
+            prodImgPreview.src = `./ImagensProduto/${prod.imagem}`;
+            prodImgPreview.onerror = () => { prodImgPreview.src = "./assets/placeholder.png"; };
             prodImgPreview.style.display = 'block';
         }
 
@@ -158,7 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Restore hidden inputs
             if (vers.imagens && vers.imagens[i]) {
                 hiddenInputs[i].value = vers.imagens[i];
-                imgPreviews[i].src = `Imagens/${vers.imagens[i]}`;
+                imgPreviews[i].src = `./ImagensProduto/${vers.imagens[i]}`;
+                imgPreviews[i].onerror = () => { imgPreviews[i].src = "./assets/placeholder.png"; };
                 imgPreviews[i].style.display = 'block';
             }
 
