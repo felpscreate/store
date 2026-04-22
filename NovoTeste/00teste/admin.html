@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo | Configurações do Site</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <h2>Admin</h2>
+            </div>
+            <nav class="menu">
+                <a href="#tab-geral" class="menu-item active" data-tab="tab-geral">Configurações Gerais</a>
+                <a href="#tab-produtos" class="menu-item" data-tab="tab-produtos">Produtos e Versões</a>
+            </nav>
+            <div class="actions-area">
+                <button id="btn-save" class="btn-primary">💾 Salvar e Baixar JSON</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <!-- Tab Geral -->
+            <section id="tab-geral" class="tab-content active">
+                <div class="header-section">
+                    <h1>Configurações Globais</h1>
+                    <p>Altere a identidade primária da vitrine.</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nome da Loja</label>
+                        <input type="text" id="cfg-nomeLoja" placeholder="Ex: Vibe Store iPhone">
+                    </div>
+                    <div class="form-group">
+                        <label>Título Principal</label>
+                        <input type="text" id="cfg-titulo" placeholder="Pode conter <br> para quebrar linha">
+                    </div>
+                    <div class="form-group">
+                        <label>Cor Primária (Hexadecimal)</label>
+                        <input type="color" id="cfg-corPrimaria" value="#ffffff">
+                    </div>
+                    <div class="form-group">
+                        <label>Tema Base</label>
+                        <select id="cfg-tema">
+                            <option value="dark">Dark (Escuro)</option>
+                            <option value="light">Light (Claro)</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Texto Auxiliar (Busca/Rodapé)</label>
+                        <input type="text" id="cfg-textoBusca" placeholder="Ex: Não encontrou o modelo que deseja?">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Produtos -->
+            <section id="tab-produtos" class="tab-content">
+                <div class="header-section">
+                    <h1>Sua Vitrine de Produtos</h1>
+                    <button class="btn-secondary" id="btn-add-product">+ Novo Produto</button>
+                </div>
+                
+                <div id="products-list-container" class="products-accordion admin-produtos">
+                    <!-- Gerado pelo JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Template de Produto -->
+    <template id="tpl-product">
+        <div class="product-item glass-card" data-prod-index="">
+            <div class="prod-header">
+                <div class="prod-header-info">
+                    <h3 class="prod-title-display">Novo Produto</h3>
+                    <span class="badge-status">Draft</span>
+                </div>
+                <button class="btn-danger btn-remove-prod">Remover</button>
+            </div>
+            <div class="prod-body">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nome do Produto (Ex: iPhone 17)</label>
+                        <input type="text" class="prod-nome" placeholder="Nome do produto">
+                    </div>
+                    <div class="form-group">
+                        <label>Preview Imagem Capa</label>
+                        <input type="file" class="file-upload prod-file" accept="image/*">
+                        <p class="help-text" style="color: #ffcc00; font-size: 0.8rem; margin-top: 4px;">⚠️ A imagem deve ser colocada manualmente na pasta /ImagensProduto/ com o mesmo nome do arquivo</p>
+                        <div class="image-preview">
+                            <span class="img-preview-text">Sem imagem</span>
+                            <img class="img-preview" src="./assets/placeholder.png" alt="preview">
+                        </div>
+                        <input type="hidden" class="prod-imagem">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Descrição Breve</label>
+                        <textarea class="prod-descricao" rows="2" placeholder="Design sofisticado..."></textarea>
+                    </div>
+                </div>
+
+                <div class="versions-section">
+                    <div class="versions-section-header">
+                        <h4>Versões do Produto</h4>
+                        <button class="btn-secondary btn-add-version">+ Criar Versão</button>
+                    </div>
+                    <div class="versions-list"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Template de Versão -->
+    <template id="tpl-version">
+        <div class="version-item" data-vers-index="">
+            <div class="vers-header">
+                <h5>Versão <span class="vers-num">1</span></h5>
+                <button class="btn-icon btn-remove-vers" title="Remover Variação">&times;</button>
+            </div>
+            <div class="form-grid compact">
+                <div class="form-group full-width">
+                    <label>Título (Ex: iPhone 17 Pro Max — 256GB)</label>
+                    <input type="text" class="vers-titulo" placeholder="Título da versão">
+                </div>
+                <div class="form-group">
+                    <label>Valor (R$)</label>
+                    <input type="text" class="vers-preco" placeholder="Ex: 5299">
+                </div>
+                <div class="form-group">
+                    <label>Máx. Parcelas</label>
+                    <input type="number" class="vers-parcelas" placeholder="12" value="12">
+                </div>
+                <div class="form-group full-width">
+                    <label>Especificações Detalhadas</label>
+                    <textarea class="vers-specs" rows="4" placeholder="Tela...\nBateria...\nCâmera... (Quebre linha com Enter)"></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <label>Imagens da Versão (Até 3 fotos)</label>
+                    <p class="help-text" style="color: #ffcc00; font-size: 0.8rem; margin-bottom: 8px;">⚠️ As imagens escolhidas devem ser salvas fisicamente em /ImagensProduto/ com seus nomes exatos.</p>
+                    <div class="images-upload-grid">
+                        <div class="img-upload-box">
+                            <span>Img 1</span>
+                            <input type="file" class="file-upload vers-img-file" data-idx="0" accept="image/*">
+                            <input type="hidden" class="vers-img-hidden" data-idx="0">
+                            <img class="img-preview-mini" src="" style="display:none;">
+                        </div>
+                        <div class="img-upload-box">
+                            <span>Img 2</span>
+                            <input type="file" class="file-upload vers-img-file" data-idx="1" accept="image/*">
+                            <input type="hidden" class="vers-img-hidden" data-idx="1">
+                            <img class="img-preview-mini" src="" style="display:none;">
+                        </div>
+                        <div class="img-upload-box">
+                            <span>Img 3</span>
+                            <input type="file" class="file-upload vers-img-file" data-idx="2" accept="image/*">
+                            <input type="hidden" class="vers-img-hidden" data-idx="2">
+                            <img class="img-preview-mini" src="" style="display:none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="admin.js"></script>
+</body>
+</html>
