@@ -841,19 +841,27 @@ body {
 .chat-footer a { color: var(--text-muted); text-decoration: none; }
 
 @media (max-width: 768px) {
-  .next-control {
-    right: -20px;
-    width: 60px;
-    height: 100px;
-    border-radius: 100px 0 0 100px;
-  }
+    .prev-control,
+    .next-control {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 90px;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(6px);
+        z-index: 9999;
+    }
 
-  .prev-control {
-    left: -20px;
-    width: 60px;
-    height: 100px;
-    border-radius: 0 100px 100px 0;
-  }
+    .prev-control {
+        left: 0;
+        border-radius: 0 50px 50px 0;
+    }
+
+    .next-control {
+        right: 0;
+        border-radius: 50px 0 0 50px;
+    }
 }
 .btn-human {
   background: #25D366;
