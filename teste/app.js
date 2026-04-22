@@ -437,30 +437,31 @@ function initChatIA() {
     const produtos = document.querySelectorAll('[data-produto]');
 
     function abrirPorNome(nome) {
-        nome = nome.toLowerCase().replace(/\s+/g, '');
+    nome = nome.replace(/\s+/g, '');
 
-        const alvo = Array.from(produtos).find(p => {
-            const produtoNome = p.dataset.produto.toLowerCase();
-            return produtoNome.includes(nome);
-        });
+    const alvo = Array.from(produtos).find(p =>
+        p.dataset.produto.includes(nome) ||
+        p.dataset.produto.includes("iphone" + nome)
+    );
 
-        if (alvo) {
-            alvo.querySelector('.open-modal-btn')?.click();
-            return true;
-        }
-        return false;
+    if (alvo) {
+        alvo.querySelector('.open-modal-btn')?.click();
+        return true;
     }
+    return false;
+}
 
     // 🔎 MODELO DIRETO
-    if (msg.includes("iphone")) {
-        let modelo = msg.replace("iphone", "").trim();
+if (msg.includes("iphone")) {
+    let modelo = msg.replace("iphone", "").trim();
 
-        if (abrirPorNome(modelo)) {
-            return "Boa escolha 👌 Esse modelo é muito procurado!";
-        }
-
-        return "Não encontrei exatamente esse modelo, mas posso te sugerir opções 👇";
+    if (abrirPorNome(modelo)) {
+        return "Boa escolha 👌 Esse modelo é muito procurado!";
     }
+
+    abrirPorNome("11") || abrirPorNome("12");
+    return "Não achei exatamente esse modelo, mas olha essas opções 👇";
+}
 
     // 💰 PREÇO / BARATO
     if (msg.includes("barato") || msg.includes("mais em conta")) {
@@ -532,6 +533,15 @@ function initChatIA() {
 
     // 💬 Mensagem inicial automática
     setTimeout(() => {
-        addMsg("Olá! 👋 Posso te ajudar a escolher seu iPhone.\nQuer algo mais barato, melhor câmera ou bateria?", "ia");
+addMsg("Olá! Sou o assistente de vendas 😊 Como posso te ajudar?", "ia");
     }, 800);
 }
+
+//ADMINISTTRADOR INSERE
+// const NOME_ATENDENTE = "Assistente"; // futuramente virá do admin
+
+// addMsg(`Olá! Sou o ${NOME_ATENDENTE} de vendas 😊 Como posso te ajudar?`, "ia");
+// const NOME_ATENDENTE = "Assistente"; // futuro admin altera isso
+
+//const header = document.getElementById("chat-header-name");
+//if (header) header.textContent = NOME_ATENDENTE;
