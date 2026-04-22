@@ -847,3 +847,12 @@ body {
 #chat-box.active {
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .prev-control,
+  .next-control {
+    display: flex !important;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
