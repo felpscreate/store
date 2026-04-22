@@ -1,0 +1,28 @@
+{
+  "config": {
+    "nomeLoja": "Vibe Store iPhones",
+    "titulo": "A nova erass",
+    "tema": "dark",
+    "corPrimaria": "#ffffff",
+    "textoBusca": "Não encontrou o que desejass?"
+  },
+  "produtos": [
+    {
+      "nome": "iPhone 17",
+      "descricao": "sofisticado",
+      "imagem": "imagem3.jpg",
+      "versoes": [
+        {
+          "titulo": "ddd",
+          "specs": "dddd",
+          "preco": "ddd",
+          "imagens": [
+            "imagem2.jpg",
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  ]
+}
