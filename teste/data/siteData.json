@@ -1,0 +1,29 @@
+{
+  "config": {
+    "nomeLoja": "Vibe Store iPhone",
+    "titulo": "A nova era",
+    "tema": "dark",
+    "corPrimaria": "#ffffff",
+    "textoBusca": "Não encontrou o que deseja?"
+  },
+  "produtos": [
+    {
+      "nome": "iphone 12",
+      "descricao": "moderno",
+      "imagem": "Capa12.jpg",
+      "versoes": [
+        {
+          "titulo": "iphone 12",
+          "specs": "🔹 iPhone 15 Pro — 128GB / 256GB\n•\t📏 Tela: 6.1\" ProMotion \n•\t⚡ Chip: A17 Pro \n•\t🔋 Bateria: ~23h vídeo \n•\t📸 Câmeras: sistema Pro \n•\t💡 Diferencial: titânio \n",
+          "preco": "1.590",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "15Pro-2.jpg",
+            "16e-1.jpg",
+            "13ProM-3.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}
