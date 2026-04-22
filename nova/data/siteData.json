@@ -1,7 +1,7 @@
 {
   "config": {
-    "nomeLoja": "Vibe Store ",
-    "titulo": "A nova ",
+    "nomeLoja": "Vibe Store iPhones",
+    "titulo": "New era Vibe Phones",
     "tema": "dark",
     "corPrimaria": "#ffffff",
     "textoBusca": "Não encontrou o que desejass?"
@@ -9,26 +9,67 @@
   "produtos": [
     {
       "nome": "iPhone 17",
-      "descricao": "sofisticado",
+      "descricao": "Máxima eficiência para profissionais extremamente exigentes.",
       "imagem": "imagem3.jpg",
       "versoes": [
         {
-          "titulo": "ddd",
-          "specs": "Produtooooooooo",
-          "preco": "ddd",
+          "titulo": "🔹 iPhone 17",
+          "specs": " — 128GB / 256GB\n\n•\t📏 Tela: 6.1\" \n•\t⚡ Chip: A19 \n•\t🔋 Bateria: ~24h vídeo \n•\t📸 Câmeras: 48MP \n•\t💡 Diferencial: foco em IA ",
+          "preco": "8.990,00",
           "imagens": [
-            "imagem2.jpg",
-            "imagem1.jpg",
-            "imagem5.jpg"
+            "Iphone17Pro-1.jpg",
+            "Iphone17Pro-2.jpg",
+            "Iphone17Pro-3.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 17 Pro",
+          "specs": " — 128GB / 256GB\n•\t📏 Tela: 6.3\" ProMotion \n•\t⚡ Chip: A19 Pro \n•\t🔋 Bateria: ~26h vídeo \n•\t📸 Câmeras: Pro avançado \n•\t💡 Diferencial: IA + câmera ",
+          "preco": "9.890,00",
+          "imagens": [
+            "imagemP3.jpg",
+            "imagemP3-3.jpg",
+            "imagemP3-2.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 17 Plus",
+          "specs": "— 128GB / 256GB\n•\t📏 Tela: 6.7\" \n•\t⚡ Chip: A19 \n•\t🔋 Bateria: ~28h vídeo \n•\t📸 Câmeras: 48MP \n•\t💡 Diferencial: autonomia \n",
+          "preco": "9.500,00",
+          "imagens": [
+            "imagemP3-3.jpg",
+            "imagemP6-3.jpg",
+            "Iphone17-1.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 17 Pro Max",
+          "specs": " — 256GB\n•\t📏 Tela: 6.9\" \n•\t⚡ Chip: A19 Pro \n•\t🔋 Bateria: ~32h vídeo \n•\t📸 Câmeras: topo absoluto \n•\t💡 Diferencial: melhor iPhone atual",
+          "preco": "11.990,00",
+          "imagens": [
+            "Iphone17Pro-2.jpg",
+            "imagemP3-2.jpg",
+            "Iphone17Pro-3.jpg"
           ]
         }
       ]
     },
     {
-      "nome": "Novo Produto",
-      "descricao": "",
-      "imagem": "capa.jpg",
-      "versoes": []
+      "nome": "iPhone XR",
+      "descricao": "Minimalismo e potência em perfeita harmonia.",
+      "imagem": "imagem8.jpg",
+      "versoes": [
+        {
+          "titulo": "🔹 iPhone XR ",
+          "specs": "— 128GB / 256GB\n•\t📏 Tela: 6.1\" Liquid Retina (LCD) \n•\t⚡ Chip: A12 Bionic \n•\t🔋 Bateria: até ~16h vídeo \n•\t📸 Câmera: 12MP (única) \n•\t🤳 Frontal: 7MP \n•\t💡 Diferencial: Face ID + custo baixo \n",
+          "preco": "1.950,00",
+          "imagens": [
+            "imagemP7-2.jpg",
+            "imagemP8.jpg",
+            "imagemP8-3.jpg"
+          ]
+        }
+      ]
     }
   ]
 }
