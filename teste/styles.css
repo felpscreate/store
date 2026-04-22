@@ -840,44 +840,21 @@ body {
 }
 .chat-footer a { color: var(--text-muted); text-decoration: none; }
 
-#chat-box {
-  display: none;
-}
-
-#chat-box.active {
-  display: flex;
-}
-
 @media (max-width: 768px) {
-  .prev-control,
   .next-control {
-    display: flex !important;
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .next-control, .prev-control {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 45px;
-    height: 90px;
-    border-radius: 50px;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
-  }
-
-  .next-control {
-    right: -10px;
+    right: -20px;
+    width: 60px;
+    height: 100px;
+    border-radius: 100px 0 0 100px;
   }
 
   .prev-control {
-    left: -10px;
+    left: -20px;
+    width: 60px;
+    height: 100px;
+    border-radius: 0 100px 100px 0;
   }
 }
-
 .btn-human {
   background: #25D366;
   color: #fff;
