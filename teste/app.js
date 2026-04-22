@@ -548,3 +548,5 @@ addMsg("Olá! Sou o assistente de vendas 😊 Como posso te ajudar?", "ia");
 //if (header) header.textContent = NOME_ATENDENTE;
 
 aS FUNCOUES DE NOME PEELO ADMIN DEIXEI ASSIM POIR HORA
+
+
