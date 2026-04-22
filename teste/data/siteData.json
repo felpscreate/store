@@ -35,6 +35,30 @@
           ]
         }
       ]
+    },
+    {
+      "nome": "iphone 30",
+      "descricao": "sofisticação",
+      "imagem": "14-2.jpg",
+      "versoes": [
+        {
+          "titulo": "",
+          "specs": "",
+          "preco": "290,20",
+          "parcelamentoMax": 10,
+          "imagens": [
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "Novo Produto",
+      "descricao": "",
+      "imagem": "capa.jpg",
+      "versoes": []
     }
   ]
 }
