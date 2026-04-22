@@ -15,12 +15,23 @@
         {
           "titulo": "iphone 12",
           "specs": "🔹 iPhone 15 Pro — 128GB / 256GB\n•\t📏 Tela: 6.1\" ProMotion \n•\t⚡ Chip: A17 Pro \n•\t🔋 Bateria: ~23h vídeo \n•\t📸 Câmeras: sistema Pro \n•\t💡 Diferencial: titânio \n",
-          "preco": "1.590",
-          "parcelamentoMax": 12,
+          "preco": "1.590,00",
+          "parcelamentoMax": 10,
           "imagens": [
             "15Pro-2.jpg",
             "16e-1.jpg",
             "13ProM-3.jpg"
+          ]
+        },
+        {
+          "titulo": "dfdfd",
+          "specs": "",
+          "preco": "5.290,00",
+          "parcelamentoMax": 9,
+          "imagens": [
+            "",
+            "",
+            ""
           ]
         }
       ]
