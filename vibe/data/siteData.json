@@ -1,0 +1,28 @@
+{
+  "config": {
+    "nomeLoja": "Vibe Store iPhone",
+    "titulo": "A nova era",
+    "tema": "dark",
+    "corPrimaria": "#ffffff",
+    "textoBusca": "Não encontrou o que deseja?"
+  },
+  "produtos": [
+    {
+      "nome": "Novo Produto",
+      "descricao": "FFF",
+      "imagem": "Capa17.jpg",
+      "versoes": [
+        {
+          "titulo": "",
+          "specs": "FFFFF",
+          "preco": "",
+          "imagens": [
+            "15Pro-2.jpg",
+            "",
+            ""
+          ]
+        }
+      ]
+    }
+  ]
+}
