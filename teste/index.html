@@ -85,31 +85,32 @@
         </div>
     </div>
 
-    <!-- IA Assistant Chat -->
-    <div id="chat-btn">
-        <svg fill="#fff" viewBox="0 0 24 24" width="24" height="24">
-            <path d="M12 2C6.477 2 2 6.035 2 11c0 2.825 1.472 5.342 3.784 6.967-.318 1.405-1.077 2.836-1.121 2.915-.07.127-.038.286.074.377.112.091.272.087.38-.01.037-.033 1.636-1.488 2.92-2.146 1.25.352 2.58.543 3.963.543 5.523 0 10-4.035 10-9s-4.477-9-10-9zm0 16c-1.282 0-2.525-.183-3.69-.516-.14-.04-.294-.02-.416.056-1.05.65-2.28 1.57-2.613 1.815.195-.733.682-1.84.95-2.827.042-.152.008-.315-.093-.437C4.195 14.654 3 12.923 3 11c0-4.411 4.037-8 9-8s9 3.589 9 8-4.037 8-9 8z"></path>
-        </svg>
+<!-- IA Assistant Chat -->
+<div id="chat-btn">
+    <svg fill="#fff" viewBox="0 0 24 24" width="24" height="24">
+        <path d="M12 2C6.477 2 2 6.035 2 11c0 2.825 1.472 5.342 3.784 6.967-.318 1.405-1.077 2.836-1.121 2.915-.07.127-.038.286.074.377.112.091.272.087.38-.01.037-.033 1.636-1.488 2.92-2.146 1.25.352 2.58.543 3.963.543 5.523 0 10-4.035 10-9s-4.477-9-10-9z"></path>
+    </svg>
+</div>
+
+<div id="chat-box">
+    <div class="chat-header">Assistente de Vendas</div>
+    <!-- <div class="chat-header" id="chat-header-name">Assistente</div> -->
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+        <button id="chat-send">Enviar</button>
     </div>
-    <div id="chat-box">
-        <div class="chat-header">Assistente de Vendas</div>
-<!-- <div class="chat-header" id="chat-header-name">Assistente</div> -->
-        <div class="chat-messages" id="chat-messages">
-            <!-- <div class="msg ia">Olá! Sou o assistente de vendas da loja. Me diga o que procura: câmera, bateria, preço barato ou o melhor modelo?</div> -->
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
-            <button id="chat-send">Enviar</button>
-        </div>
-        <div class="chat-footer">
-            <!-- <a href="https://api.whatsapp.com/send?phone=555185729132" target="_blank">Falar com humano</a> -->
-            <a href="https://api.whatsapp.com/send?phone=555185729132" 
-   target="_blank" 
-   class="btn btn-human">
-   Falar com humano
-</a>
-        </div>
+
+    <div class="chat-footer">
+        <a href="https://api.whatsapp.com/send?phone=555185729132&text=Olá,%20quero%20falar%20com%20um%20atendente"
+           target="_blank"
+           class="btn btn-human">
+           Falar com humano
+        </a>
     </div>
+</div>
 
     <!-- Scripts -->
     <script src="app.js"></script>
