@@ -856,3 +856,29 @@ body {
     pointer-events: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .next-control, .prev-control {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 90px;
+    border-radius: 50px;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  .next-control {
+    right: -10px;
+  }
+
+  .prev-control {
+    left: -10px;
+  }
+}
+
+.btn-human {
+  background: #25D366;
+  color: #fff;
+}
