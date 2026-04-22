@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, fadeOptions);
 
+    initChatIA();
+
     function bindSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -111,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             initMiniCarousels();
             
             // Build parcelamento logic
-            prod.versoes.forEach((versao, vIndex) => {
+            produtoData.versoes.forEach((versao, vIndex) => {
                 let pPrice = parseFloat((versao.preco || "0").replace(/\./g, '').replace(',', '.'));
                 if(!isNaN(pPrice) && pPrice > 0) {
                     gerarParcelasUI(pPrice, versao.parcelamentoMax || 12, vIndex, versao.titulo || "Produto");
@@ -351,3 +353,105 @@ document.addEventListener('DOMContentLoaded', () => {
     const staticFade = document.querySelectorAll('.fade-in');
     staticFade.forEach(el => fadeObserver.observe(el));
 });
+
+
+
+function gerarParcelasUI(preco, max, index, tituloProduto) {
+    const container = document.getElementById(`parcelas-${index}`);
+    const display = document.getElementById(`parcelas-valor-${index}`);
+    const btnZap = document.getElementById(`btn-zap-${index}`);
+
+    if (!container || !display) return;
+
+    container.innerHTML = "";
+
+    for (let i = 1; i <= max; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i + "x";
+
+        btn.onclick = () => {
+            const valor = (preco / i).toFixed(2).replace('.', ',');
+            display.textContent = `${i}x de R$ ${valor}`;
+
+            container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (btnZap) {
+                const msg = `Olá, tenho interesse no ${tituloProduto} em ${i}x de R$ ${valor}`;
+                btnZap.href = `https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(msg)}`;
+            }
+        };
+
+        container.appendChild(btn);
+    }
+
+    // ativa 1x por padrão
+    container.querySelector('button')?.click();
+}
+
+function initChatIA() {
+    const btn = document.getElementById("chat-btn");
+    const box = document.getElementById("chat-box");
+    const input = document.getElementById("chat-input");
+    const send = document.getElementById("chat-send");
+    const messages = document.getElementById("chat-messages");
+
+    if (!btn || !box) return;
+
+    btn.addEventListener("click", () => {
+        box.classList.toggle("active");
+    });
+
+    function addMsg(text, type) {
+        const div = document.createElement("div");
+        div.className = "msg " + type;
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function responderIA(msg) {
+        msg = msg.toLowerCase();
+
+        if (msg.includes("barato")) {
+            document.querySelector('[data-produto*="iphone11"]')?.click();
+            return "Tenho uma opção mais acessível 👇";
+        }
+
+        if (msg.includes("câmera")) {
+            document.querySelector('[data-produto*="pro"]')?.click();
+            return "Esse aqui tem câmera top 📸";
+        }
+
+        if (msg.includes("bateria")) {
+            document.querySelector('[data-produto*="max"]')?.click();
+            return "Esse tem bateria forte 🔋";
+        }
+
+        if (msg.includes("melhor")) {
+            document.querySelector('[data-produto]:last-child')?.click();
+            return "Esse é o mais avançado 🚀";
+        }
+
+        return "Me diga: câmera, bateria, preço ou melhor modelo?";
+    }
+
+    function sendMsg() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        addMsg(text, "user");
+        const resp = responderIA(text);
+
+        setTimeout(() => addMsg(resp, "ia"), 400);
+
+        input.value = "";
+    }
+
+    send.addEventListener("click", sendMsg);
+    input.addEventListener("keydown", e => {
+        if (e.key === "Enter") sendMsg();
+    });
+}
+
+
