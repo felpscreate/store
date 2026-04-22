@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextCtrl = document.querySelector('.next-control');
 
     function openModal(produtoData, pIndex) {
+        if (!modalCarousel) return;
+
         modalCarousel.innerHTML = '';
         
         const versoes = produtoData.versoes || [];
@@ -78,41 +80,64 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCarouselControls();
         }, 50);
 
-        modalOverlay.classList.add('active');
+        if (modalOverlay) modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     // 🔥 CONTROLE INTELIGENTE DO CARROSSEL
     function updateCarouselControls() {
+        if (!modalCarousel || !prevCtrl || !nextCtrl) return;
+
         const scrollLeft = modalCarousel.scrollLeft;
         const maxScroll = modalCarousel.scrollWidth - modalCarousel.clientWidth;
 
-        prevCtrl.style.opacity = scrollLeft <= 5 ? '0' : '1';
-        prevCtrl.style.pointerEvents = scrollLeft <= 5 ? 'none' : 'auto';
+        // esquerda
+        if (scrollLeft <= 5) {
+            prevCtrl.style.opacity = '0';
+            prevCtrl.style.pointerEvents = 'none';
+        } else {
+            prevCtrl.style.opacity = '1';
+            prevCtrl.style.pointerEvents = 'auto';
+        }
 
-        nextCtrl.style.opacity = scrollLeft >= maxScroll - 5 ? '0' : '1';
-        nextCtrl.style.pointerEvents = scrollLeft >= maxScroll - 5 ? 'none' : 'auto';
+        // direita
+        if (scrollLeft >= maxScroll - 5) {
+            nextCtrl.style.opacity = '0';
+            nextCtrl.style.pointerEvents = 'none';
+        } else {
+            nextCtrl.style.opacity = '1';
+            nextCtrl.style.pointerEvents = 'auto';
+        }
     }
 
-    modalCarousel.addEventListener('scroll', updateCarouselControls);
+    if (modalCarousel) {
+        modalCarousel.addEventListener('scroll', updateCarouselControls);
+    }
 
-    prevCtrl.addEventListener('click', () => {
-        modalCarousel.scrollBy({ left: -modalCarousel.clientWidth, behavior: 'smooth' });
-    });
+    if (prevCtrl) {
+        prevCtrl.addEventListener('click', () => {
+            modalCarousel.scrollBy({ left: -modalCarousel.clientWidth, behavior: 'smooth' });
+        });
+    }
 
-    nextCtrl.addEventListener('click', () => {
-        modalCarousel.scrollBy({ left: modalCarousel.clientWidth, behavior: 'smooth' });
-    });
+    if (nextCtrl) {
+        nextCtrl.addEventListener('click', () => {
+            modalCarousel.scrollBy({ left: modalCarousel.clientWidth, behavior: 'smooth' });
+        });
+    }
 
     function closeModal() {
-        modalOverlay.classList.remove('active');
+        if (modalOverlay) modalOverlay.classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-    });
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+    }
 
     // LOAD DATA
     if (window.location.protocol !== "file:") {
@@ -121,6 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
 
                 const grid = document.getElementById('produtos-grid');
+                if (!grid) return;
+
                 grid.innerHTML = '';
 
                 data.produtos.forEach((prod, index) => {
@@ -139,14 +166,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     grid.appendChild(card);
 
-                    card.querySelector('.open-modal-btn')
-                        .addEventListener('click', () => openModal(prod, index));
+                    const btn = card.querySelector('.open-modal-btn');
+                    if (btn) {
+                        btn.addEventListener('click', () => openModal(prod, index));
+                    }
 
                     fadeObserver.observe(card);
                 });
 
                 initChatIA();
+            })
+            .catch(err => {
+                console.error("Erro ao carregar JSON:", err);
+                initChatIA(); // mesmo com erro, chat inicia
             });
+    } else {
+        initChatIA(); // garante chat mesmo sem servidor
     }
 
     bindSmoothScroll();
@@ -162,7 +197,10 @@ function initChatIA() {
     const send = document.getElementById("chat-send");
     const messages = document.getElementById("chat-messages");
 
-    if (!btn || !box) return;
+    if (!btn || !box || !input || !send || !messages) {
+        console.warn("Chat não encontrado no HTML");
+        return;
+    }
 
     btn.addEventListener("click", () => {
         box.classList.toggle("active");
@@ -199,16 +237,16 @@ function initChatIA() {
             let modelo = msg.replace("iphone", "").trim();
 
             if (abrirPorNome(modelo)) {
-                return "Boa escolha 👌";
+                return "Boa escolha 👌 Esse modelo é muito procurado!";
             }
 
             abrirPorNome("11") || abrirPorNome("12");
-            return "Esse modelo pode variar, mas olha essas opções 👇";
+            return "Não achei exatamente esse modelo, mas olha essas opções 👇";
         }
 
-        if (msg.includes("preço") || msg.includes("valor")) {
-            abrirPorNome("11");
-            return "Temos várias opções 💰";
+        if (msg.includes("preço") || msg.includes("valor") || msg.includes("quanto")) {
+            abrirPorNome("11") || abrirPorNome("12");
+            return "Temos várias opções 💰 Quer mais barato ou melhor desempenho?";
         }
 
         if (msg.includes("câmera")) {
@@ -221,7 +259,13 @@ function initChatIA() {
             return "Esses duram mais 🔋";
         }
 
-        return "Quer ajuda com preço, câmera ou bateria?";
+        if (msg.includes("melhor")) {
+            const ultimo = produtos[produtos.length - 1];
+            ultimo?.querySelector('.open-modal-btn')?.click();
+            return "Esse é o mais top que temos 🚀";
+        }
+
+        return "Me diga: você quer preço, câmera ou bateria?";
     }
 
     function sendMsg() {
@@ -238,11 +282,12 @@ function initChatIA() {
     }
 
     send.addEventListener("click", sendMsg);
+
     input.addEventListener("keydown", e => {
         if (e.key === "Enter") sendMsg();
     });
 
-    // 👇 MENSAGEM LIMPA
+    // mensagem inicial limpa
     setTimeout(() => {
         addMsg("Olá, sou assistente de vendas. Como posso ajudar?", "ia");
     }, 500);
