@@ -4,22 +4,201 @@
     "titulo": "A nova era",
     "tema": "dark",
     "corPrimaria": "#ffffff",
-    "textoBusca": "Não encontrou o que deseja?"
+    "textoBusca": "Não encontrou o que deseja, entre em contato através do whats?"
   },
   "produtos": [
     {
-      "nome": "Novo Produto",
-      "descricao": "FFF",
+      "nome": "iPhone 17",
+      "descricao": "Nova geração focada em IA e evolução de desempenho",
       "imagem": "Capa17.jpg",
       "versoes": [
         {
-          "titulo": "",
-          "specs": "FFFFF",
-          "preco": "",
+          "titulo": "iPhone 17",
+          "specs": "• 💾 Armazenamento: 256GB / 512GB / 1TB\n\niPhone 17 • iPhone 17 Plus\niPhone 17 Pro • iPhone 17 Pro Max\n\n• 📏 Tela: 6.3\" / 6.9\"\n• ⚡ Chip: A19 Pro\n• 🔋 Bateria: ~26h / ~32h\n• 📸 Câmeras: Pro avançado\n• 💡 Diferencial: topo da linha\n\n• 💳 10x de R$ 649",
+          "preco": "5.299",
           "imagens": [
+            "17ProM-1.jpg",
+            "17ProM-2.jpg",
+            "17ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone XR",
+      "descricao": "Entrada no mundo iPhone com ótimo custo e desempenho sólido.",
+      "imagem": "CapaXR.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone XR",
+          "specs": "• 💾 Armazenamento: 64GB / 128GB / 256GB\n\n• 📏 Tela: 6.1\" Liquid Retina\n• ⚡ Chip: A12 Bionic\n• 🔋 Bateria: ~16h vídeo\n• 📸 Câmera: 12MP\n• 🤳 Frontal: 7MP\n• 💡 Diferencial: custo baixo + Face ID\n\n• 💳 10x de R$ 189\n",
+          "preco": "1.899,90",
+          "imagens": [
+            "XR-1.jpg",
+            "XR-2.jpg",
+            "XR-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPone 11",
+      "descricao": "",
+      "imagem": "Capa11.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 11",
+          "specs": "• 💾 Armazenamento: 64GB / 128GB / 256GB\n\n• 📏 Tela: 6.1\" Liquid Retina\n• ⚡ Chip: A13 Bionic\n• 🔋 Bateria: ~17h vídeo\n• 📸 Câmeras: Dupla 12MP\n• 🤳 Frontal: 12MP\n• 💡 Diferencial: melhor custo-benefício\n\n• 💳 10x de R$ 219",
+          "preco": "2.199,90",
+          "imagens": [
+            "11-1.jpg",
+            "11-2.jpg",
+            "11-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 11 Pro",
+          "specs": "Modelos disponíveis:\niPhone 11 Pro • iPhone 11 Pro Max\n\n• 💾 Armazenamento: 64GB / 256GB / 512GB\n\n• 📏 Tela: 5.8\" / 6.5\" OLED\n• ⚡ Chip: A13 Bionic\n• 🔋 Bateria: ~18h / ~20h\n• 📸 Câmeras: Tripla 12MP\n• 💡 Diferencial: câmera profissional\n\n• 💳 10x de R$ 289",
+          "preco": "2.899,90",
+          "imagens": [
+            "11ProM-1.jpg",
+            "11ProM-2.jpg",
+            "11ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 12",
+      "descricao": "Design moderno com bordas retas e suporte ao 5G.",
+      "imagem": "Capa12.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 12",
+          "specs": "Modelos disponíveis:\niPhone 12 • iPhone 12 mini\n\n• 💾 Armazenamento: 64GB / 128GB / 256GB\n\n• 📏 Tela: 6.1\" / 5.4\" OLED\n• ⚡ Chip: A14 Bionic\n• 🔋 Bateria: ~17h vídeo\n• 📸 Câmeras: Dupla 12MP\n• 💡 Diferencial: 5G + novo design\n\n• 💳 10x de R$ 259",
+          "preco": "2.599,90",
+          "imagens": [
+            "12-1.jpg",
+            "12-2.jpg",
+            "12-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 12 Pro",
+          "specs": "Modelos disponíveis:\niPhone 12 Pro • iPhone 12 Pro Max\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB\n\n• 📏 Tela: 6.1\" / 6.7\" OLED\n• ⚡ Chip: A14 Bionic\n• 🔋 Bateria: ~17h / ~20h\n• 📸 Câmeras: Tripla + LiDAR\n• 💡 Diferencial: fotos avançadas\n\n• 💳 10x de R$ 329",
+          "preco": "3.299,90",
+          "imagens": [
+            "12ProM-1.jpg",
+            "12ProM-2.jpg",
+            "12ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 13",
+      "descricao": "Mais bateria e desempenho para uso intenso no dia a dia.",
+      "imagem": "Capa13.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 13",
+          "specs": "Modelos disponíveis:\niPhone 13 • iPhone 13 mini\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB\n\n• 📏 Tela: 6.1\" / 5.4\" OLED\n• ⚡ Chip: A15 Bionic\n• 🔋 Bateria: ~19h vídeo\n• 📸 Câmeras: Dupla 12MP\n• 💡 Diferencial: bateria melhorada\n\n• 💳 10x de R$ 309",
+          "preco": "3.099,90",
+          "imagens": [
+            "13-1.jpg",
+            "13-2.jpg",
+            "13-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 13 Pro",
+          "specs": "Modelos disponíveis:\niPhone 13 Pro • iPhone 13 Pro Max\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB / 1TB\n\n• 📏 Tela: 6.1\" / 6.7\" 120Hz\n• ⚡ Chip: A15 Bionic\n• 🔋 Bateria: ~22h / ~28h\n• 📸 Câmeras: Tripla\n• 💡 Diferencial: ProMotion + macro\n\n• 💳 10x de R$ 389",
+          "preco": "3.899,90",
+          "imagens": [
+            "13ProM-1.jpg",
+            "13ProM-2.jpg",
+            "13ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 14",
+      "descricao": "Mais segurança e estabilidade com recursos inteligentes.",
+      "imagem": "Capa14.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 14",
+          "specs": "Modelos disponíveis:\niPhone 14 • iPhone 14 Plus\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB\n\n• 📏 Tela: 6.1\" / 6.7\"\n• ⚡ Chip: A15 Bionic\n• 🔋 Bateria: ~20h / ~26h\n• 📸 Câmeras: Dupla\n• 💡 Diferencial: Crash Detection\n\n• 💳 10x de R$ 349",
+          "preco": "3.499,90",
+          "imagens": [
+            "14-1.jpg",
+            "14-2.jpg",
+            "14-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 14 Pro",
+          "specs": "Modelos disponíveis:\niPhone 14 Pro • iPhone 14 Pro Max\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB / 1TB\n\n• 📏 Tela: 6.1\" / 6.7\" 120Hz\n• ⚡ Chip: A16 Bionic\n• 🔋 Bateria: ~23h / ~29h\n• 📸 Câmeras: 48MP\n• 💡 Diferencial: Dynamic Island\n\n• 💳 10x de R$ 439",
+          "preco": "4.399,90",
+          "imagens": [
+            "14ProM-1.jpg",
+            "14ProM-2.jpg",
+            "14ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 15",
+      "descricao": "Nova geração com USB-C e câmera de alto nível.",
+      "imagem": "Capa15.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 15",
+          "specs": "Modelos disponíveis:\niPhone 15 • iPhone 15 Plus\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB\n\n• 📏 Tela: 6.1\" / 6.7\"\n• ⚡ Chip: A16 Bionic\n• 🔋 Bateria: ~20h / ~26h\n• 📸 Câmeras: 48MP\n• 💡 Diferencial: USB-C\n\n• 💳 10x de R$ 409",
+          "preco": "4.099,90",
+          "imagens": [
+            "15-1.jpg",
+            "15-2.jpg",
+            "15-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 15 Pro",
+          "specs": "Modelos disponíveis:\niPhone 15 Pro • iPhone 15 Pro Max\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB / 1TB\n\n• 📏 Tela: 6.1\" / 6.7\" 120Hz\n• ⚡ Chip: A17 Pro\n• 🔋 Bateria: ~23h / ~29h\n• 📸 Câmeras: Pro avançado\n• 💡 Diferencial: titânio + performance\n\n• 💳 10x de R$ 529",
+          "preco": "5.299,90",
+          "imagens": [
+            "15Pro-1.jpg",
             "15Pro-2.jpg",
-            "",
-            ""
+            "15Pro-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 16",
+      "descricao": "Foco em inteligência artificial e alto desempenho.",
+      "imagem": "Capa16.jpg",
+      "versoes": [
+        {
+          "titulo": "iPhone 16",
+          "specs": "Modelos disponíveis:\niPhone 16e • iPhone 16 • iPhone 16 Plus\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB\n\n• 📏 Tela: 6.1\" / 6.7\"\n• ⚡ Chip: A18\n• 🔋 Bateria: ~22h / ~27h\n• 📸 Câmeras: 48MP\n• 💡 Diferencial: IA integrada\n\n• 💳 10x de R$ 469",
+          "preco": "4.699,90",
+          "imagens": [
+            "16Plus-1.jpg",
+            "16Plus-2.jpg",
+            "16Plus-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 16 Pro",
+          "specs": "Modelos disponíveis:\niPhone 16 Pro • iPhone 16 Pro Max\n\n• 💾 Armazenamento: 128GB / 256GB / 512GB / 1TB\n\n• 📏 Tela: 6.3\" / 6.9\"\n• ⚡ Chip: A18 Pro\n• 🔋 Bateria: ~25h / ~30h\n• 📸 Câmeras: Pro avançado\n• 💡 Diferencial: IA + performance\n\n• 💳 10x de R$ 599",
+          "preco": "5.999,90",
+          "imagens": [
+            "16ProM-1.jpg",
+            "16ProM-2.jpg",
+            "16ProM-3.jpg"
           ]
         }
       ]
