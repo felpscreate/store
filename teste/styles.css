@@ -840,3 +840,10 @@ body {
 }
 .chat-footer a { color: var(--text-muted); text-decoration: none; }
 
+#chat-box {
+  display: none;
+}
+
+#chat-box.active {
+  display: flex;
+}
