@@ -4,7 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-
+   
     const fadeOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, fadeOptions);
 
-    initChatIA();
+
     console.log("Chat iniciado");
 
     function bindSmoothScroll() {
@@ -343,6 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 bindSmoothScroll();
+                initChatIA();
             })
             .catch(err => {
                 console.error("Falha ao carregar siteData.json:", err);
@@ -357,37 +358,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-function gerarParcelasUI(preco, max, index, tituloProduto) {
+
+
+function gerarParcelasUI(valor, maxParcelas, index, titulo) {
     const container = document.getElementById(`parcelas-${index}`);
-    const display = document.getElementById(`parcelas-valor-${index}`);
-    const btnZap = document.getElementById(`btn-zap-${index}`);
+    const valorEl = document.getElementById(`parcelas-valor-${index}`);
 
-    if (!container || !display) return;
+    if (!container || !valorEl) return;
 
-    container.innerHTML = "";
+    container.innerHTML = '';
 
-    for (let i = 1; i <= max; i++) {
+    const limiteVisivel = 5;
+
+    for (let i = 1; i <= maxParcelas; i++) {
+        if (i > limiteVisivel) break;
+
         const btn = document.createElement('button');
-        btn.textContent = i + "x";
-
-        btn.onclick = () => {
-            const valor = (preco / i).toFixed(2).replace('.', ',');
-            display.textContent = `${i}x de R$ ${valor}`;
-
-            container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            if (btnZap) {
-                const msg = `Olá, tenho interesse no ${tituloProduto} em ${i}x de R$ ${valor}`;
-                btnZap.href = `https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(msg)}`;
-            }
-        };
-
+        btn.textContent = i + 'x';
+        btn.onclick = () => atualizarParcela(i);
         container.appendChild(btn);
     }
 
-    // ativa 1x por padrão
-    container.querySelector('button')?.click();
+    // BOTÃO "+"
+    if (maxParcelas > limiteVisivel) {
+        const more = document.createElement('button');
+        more.textContent = '+';
+        more.onclick = () => {
+            container.innerHTML = '';
+
+            for (let i = 1; i <= maxParcelas; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = i + 'x';
+                btn.onclick = () => atualizarParcela(i);
+                container.appendChild(btn);
+            }
+        };
+        container.appendChild(more);
+    }
+
+    function atualizarParcela(x) {
+        const valorParcela = (valor / x).toFixed(2);
+        valorEl.textContent = `ou ${x}x de R$ ${valorParcela}`;
+
+        const btnZap = document.getElementById(`btn-zap-${index}`);
+        if (btnZap) {
+            const texto = `${titulo} em ${x}x de R$ ${valorParcela}`;
+            btnZap.href = `https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(texto)}`;
+        }
+    }
+
+    atualizarParcela(1);
 }
 
 function initChatIA() {
@@ -412,47 +432,106 @@ function initChatIA() {
     }
 
     function responderIA(msg) {
-        msg = msg.toLowerCase();
+    msg = msg.toLowerCase();
 
-        if (msg.includes("barato")) {
-            document.querySelector('[data-produto*="iphone11"]')?.click();
-            return "Tenho uma opção mais acessível 👇";
+    const produtos = document.querySelectorAll('[data-produto]');
+
+    function abrirPorNome(nome) {
+        nome = nome.toLowerCase().replace(/\s+/g, '');
+
+        const alvo = Array.from(produtos).find(p => {
+            const produtoNome = p.dataset.produto.toLowerCase();
+            return produtoNome.includes(nome);
+        });
+
+        if (alvo) {
+            alvo.querySelector('.open-modal-btn')?.click();
+            return true;
         }
-
-        if (msg.includes("câmera")) {
-            document.querySelector('[data-produto*="pro"]')?.click();
-            return "Esse aqui tem câmera top 📸";
-        }
-
-        if (msg.includes("bateria")) {
-            document.querySelector('[data-produto*="max"]')?.click();
-            return "Esse tem bateria forte 🔋";
-        }
-
-        if (msg.includes("melhor")) {
-            document.querySelector('[data-produto]:last-child')?.click();
-            return "Esse é o mais avançado 🚀";
-        }
-
-        return "Me diga: câmera, bateria, preço ou melhor modelo?";
+        return false;
     }
+
+    // 🔎 MODELO DIRETO
+    if (msg.includes("iphone")) {
+        let modelo = msg.replace("iphone", "").trim();
+
+        if (abrirPorNome(modelo)) {
+            return "Boa escolha 👌 Esse modelo é muito procurado!";
+        }
+
+        return "Não encontrei exatamente esse modelo, mas posso te sugerir opções 👇";
+    }
+
+    // 💰 PREÇO / BARATO
+    if (msg.includes("barato") || msg.includes("mais em conta")) {
+        abrirPorNome("11") || abrirPorNome("12");
+        return "Tenho opções mais acessíveis e com ótimo custo-benefício 💰";
+    }
+
+    // 💰 PERGUNTA DE PREÇO (AQUI É ONDE ENTRA O TEU BLOCO)
+    if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
+        abrirPorNome("11") || abrirPorNome("12");
+        return "Temos várias opções 💰 Me diz: prefere mais barato ou melhor desempenho?";
+    }
+
+    // 📸 CÂMERA
+    if (msg.includes("câmera") || msg.includes("foto") || msg.includes("vídeo")) {
+        abrirPorNome("pro");
+        return "Se você quer câmera top, recomendo linha Pro 📸";
+    }
+
+    // 🔋 BATERIA
+    if (msg.includes("bateria") || msg.includes("dura") || msg.includes("carrega")) {
+        abrirPorNome("max") || abrirPorNome("plus");
+        return "Esses modelos têm bateria mais duradoura 🔋";
+    }
+
+    // 👍 USADO / VALE A PENA
+    if (msg.includes("vale a pena") || msg.includes("compensa") || msg.includes("usado")) {
+        abrirPorNome("12") || abrirPorNome("13");
+        return "Sim, vale muito a pena 👍 Esses modelos ainda são rápidos e atualizados";
+    }
+
+    // 🚀 MELHOR MODELO
+    if (msg.includes("melhor") || msg.includes("top") || msg.includes("mais novo")) {
+        const ultimo = produtos[produtos.length - 1];
+        ultimo?.querySelector('.open-modal-btn')?.click();
+        return "Esse é o mais avançado que temos 🚀";
+    }
+
+    // 🧠 COMPARAÇÃO
+    if (msg.includes("diferença") || msg.includes("qual melhor entre")) {
+        abrirPorNome("12");
+        return "Posso te mostrar um ótimo equilíbrio entre preço e desempenho 👍";
+    }
+
+    // 💬 FINAL
+    return "Posso te ajudar melhor 😄 Você busca algo mais barato, melhor câmera ou bateria?";
+}
 
     function sendMsg() {
-        const text = input.value.trim();
-        if (!text) return;
+    const text = input.value.trim();
+    if (!text) return;
 
-        addMsg(text, "user");
-        const resp = responderIA(text);
+    addMsg(text, "user");
 
-        setTimeout(() => addMsg(resp, "ia"), 400);
+    const resp = responderIA(text) || "Deixa eu te ajudar melhor 👇";
 
-        input.value = "";
-    }
+    setTimeout(() => {
+        addMsg(resp, "ia");
+    }, 400);
+
+    input.value = "";
+}
 
     send.addEventListener("click", sendMsg);
+
     input.addEventListener("keydown", e => {
         if (e.key === "Enter") sendMsg();
     });
+
+    // 💬 Mensagem inicial automática
+    setTimeout(() => {
+        addMsg("Olá! 👋 Posso te ajudar a escolher seu iPhone.\nQuer algo mais barato, melhor câmera ou bateria?", "ia");
+    }, 800);
 }
-
-
