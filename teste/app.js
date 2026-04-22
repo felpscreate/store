@@ -297,3 +297,4 @@ function initChatIA() {
 // ADMIN FUTURO
 // const NOME_ATENDENTE = "Assistente";
 // addMsg(`Olá! Sou ${NOME_ATENDENTE}. Como posso ajudar?`, "ia");
+
