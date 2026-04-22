@@ -752,7 +752,7 @@ body {
     transition: transform 0.3s ease;
 }
 #chat-btn:hover { transform: scale(1.1); }
-#chat-btn svg { fill: #000; (--bg-dark); width: 28px; height: 28px; }
+#chat-btn svg { fill: var; (--bg-dark); width: 28px; height: 28px; }
 
 #chat-box {
     position: fixed;
