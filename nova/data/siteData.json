@@ -1,7 +1,7 @@
 {
   "config": {
-    "nomeLoja": "Vibe Store iPhones",
-    "titulo": "Venha ver o novo",
+    "nomeLoja": "Store Vibe iPhones",
+    "titulo": "A nova Era",
     "tema": "dark",
     "corPrimaria": "#ffffff",
     "textoBusca": "Não encontrou o que deseja entre em contato?"
@@ -10,16 +10,16 @@
     {
       "nome": "iPhone 17",
       "descricao": "Máxima eficiência para profissionais extremamente exigentes.",
-      "imagem": "imagem3.jpg",
+      "imagem": "Capa17.jpg",
       "versoes": [
         {
           "titulo": "🔹 iPhone 17",
           "specs": " — 128GB / 256GB\n\n•\t📏 Tela: 6.1\" \n•\t⚡ Chip: A19 \n•\t🔋 Bateria: ~24h vídeo \n•\t📸 Câmeras: 48MP \n•\t💡 Diferencial: foco em IA ",
           "preco": "8.990,00",
           "imagens": [
-            "imagemP3-3.jpg",
-            "imagemP3.jpg",
-            "Iphone17-1.jpg"
+            "17-1.jpg",
+            "17-2.jpg",
+            "17-3.jpg"
           ]
         },
         {
@@ -27,9 +27,9 @@
           "specs": " — 128GB / 256GB\n•\t📏 Tela: 6.3\" ProMotion \n•\t⚡ Chip: A19 Pro \n•\t🔋 Bateria: ~26h vídeo \n•\t📸 Câmeras: Pro avançado \n•\t💡 Diferencial: IA + câmera ",
           "preco": "9.890,00",
           "imagens": [
-            "Iphone17Pro-2.jpg",
-            "Iphone17Pro-3.jpg",
-            "Iphone17Pro-1.jpg"
+            "17ProM-1.jpg",
+            "17ProM-2.jpg",
+            "17ProM-3.jpg"
           ]
         },
         {
@@ -57,16 +57,16 @@
     {
       "nome": "iPhone XR",
       "descricao": "Minimalismo e potência em perfeita harmonia.",
-      "imagem": "imagem8.jpg",
+      "imagem": "CapaXR.jpg",
       "versoes": [
         {
           "titulo": "🔹 iPhone XR ",
           "specs": "— 128GB / 256GB\n•\t📏 Tela: 6.1\" Liquid Retina (LCD) \n•\t⚡ Chip: A12 Bionic \n•\t🔋 Bateria: até ~16h vídeo \n•\t📸 Câmera: 12MP (única) \n•\t🤳 Frontal: 7MP \n•\t💡 Diferencial: Face ID + custo baixo \n",
           "preco": "1.950,00",
           "imagens": [
-            "imagemP7-2.jpg",
-            "imagemP8.jpg",
-            "imagemP8-3.jpg"
+            "XR-1.jpg",
+            "XR-2.jpg",
+            "XR-3.jpg"
           ]
         }
       ]
