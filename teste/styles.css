@@ -881,4 +881,9 @@ body {
 .btn-human {
   background: #25D366;
   color: #fff;
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 8px;
 }
