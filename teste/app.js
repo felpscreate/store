@@ -159,10 +159,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.className = 'product-card fade-in';
                     card.dataset.produto = nomeFormatado;
 
-                    card.innerHTML = `
-                        <h3>${nomeProduto}</h3>
-                        <button class="open-modal-btn">Ver</button>
-                    `;
+card.innerHTML = `
+    <div class="image-container">
+        <img src="./ImagensProduto/imagem${index + 1}.jpg" class="img-main">
+        
+        <div class="tile-button-wrapper open-modal-btn">
+            <span class="tile-button">
+                +
+            </span>
+        </div>
+    </div>
+
+    <div class="product-info">
+        <h3>${nomeProduto}</h3>
+        <span class="price">Ver detalhes</span>
+    </div>
+`;
 
                     grid.appendChild(card);
 
