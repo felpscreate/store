@@ -1,7 +1,7 @@
 {
   "config": {
-    "nomeLoja": "Vibe Store iPhones",
-    "titulo": "A nova erass",
+    "nomeLoja": "Vibe Store ",
+    "titulo": "A nova ",
     "tema": "dark",
     "corPrimaria": "#ffffff",
     "textoBusca": "Não encontrou o que desejass?"
@@ -14,15 +14,21 @@
       "versoes": [
         {
           "titulo": "ddd",
-          "specs": "dddd",
+          "specs": "Produtooooooooo",
           "preco": "ddd",
           "imagens": [
             "imagem2.jpg",
-            "",
-            ""
+            "imagem1.jpg",
+            "imagem5.jpg"
           ]
         }
       ]
+    },
+    {
+      "nome": "Novo Produto",
+      "descricao": "",
+      "imagem": "capa.jpg",
+      "versoes": []
     }
   ]
 }
