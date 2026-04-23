@@ -676,12 +676,13 @@ body {
         margin-top: 20px;
     }
 
+@media (max-width: 640px) {
     .carousel-control {
-        opacity: 0.10;
-        top: 50%; 
-        width: 38px;
-        height: 42px;
+        opacity: 1 !important;
+        width: 52px;
+        height: 52px;
     }
+}
     
     .prev-control { left: 8px; }
     .next-control { right: 8px; }
