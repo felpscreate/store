@@ -1,64 +1,174 @@
 {
   "config": {
-    "nomeLoja": "Vibe Store iPhone",
-    "titulo": "A nova era",
+    "nomeLoja": "Vibe Store ",
+    "titulo": "A nova era chegou",
     "tema": "dark",
     "corPrimaria": "#ffffff",
     "textoBusca": "Não encontrou o que deseja?"
   },
   "produtos": [
     {
-      "nome": "iphone 12",
-      "descricao": "moderno",
-      "imagem": "Capa12.jpg",
+      "nome": "iPhone XR",
+      "descricao": "Design moderno com tela ampla e desempenho confiável para o dia a dia, ideal para quem busca economia sem abrir mão da qualidade.",
+      "imagem": "CapaXR.jpg",
       "versoes": [
         {
-          "titulo": "iphone 12",
-          "specs": "🔹 iPhone 15 Pro — 128GB / 256GB\n•\t📏 Tela: 6.1\" ProMotion \n•\t⚡ Chip: A17 Pro \n•\t🔋 Bateria: ~23h vídeo \n•\t📸 Câmeras: sistema Pro \n•\t💡 Diferencial: titânio \n",
-          "preco": "1.590,00",
+          "titulo": "🔹 iPhone XR ",
+          "specs": "— 128GB / 256GB\n\n• 🔋 Saúde da bateria: 80%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: sem trincas, em ótimo estado\n• ⚡ Desempenho: rápido para uso diário\n• 📸 Câmera: 12MP funcional\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: melhor opção custo baixo",
+          "preco": "1.290,00",
+          "parcelamentoMax": 6,
+          "imagens": [
+            "XR-1.jpg",
+            "XR-2.jpg",
+            "XR-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 11",
+      "descricao": "Acabamento premium e sistema de câmeras avançado, pensado para quem busca qualidade profissional em fotos e vídeos.",
+      "imagem": "Capa11.jpg",
+      "versoes": [
+        {
+          "titulo": "🔹 iPhone 11 — 128GB / 256GB",
+          "specs": "• 🔋 Saúde da bateria: 80%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: intacta, sem detalhes\n• ⚡ Desempenho: rápido e estável\n• 📸 Câmeras: dupla 12MP\n• 🔒 Face ID: ok\n• 💡 Diferencial: ótimo custo-benefício",
+          "preco": "1.890,00",
           "parcelamentoMax": 10,
           "imagens": [
-            "15Pro-2.jpg",
-            "16e-1.jpg",
-            "13ProM-3.jpg"
+            "11-1.jpg",
+            "11-2.jpg",
+            "11-3.jpg"
           ]
         },
         {
-          "titulo": "dfdfd",
-          "specs": "",
-          "preco": "5.290,00",
-          "parcelamentoMax": 9,
+          "titulo": "🔹 iPhone 11 Pro — 256GB",
+          "specs": "Disponível nas versões:\nPro  |  Pro Max\n\n• 🔋 Saúde da bateria: 78%+\n• 📦 Armazenamento: 256GB\n• 📱 Tela: OLED sem trincas\n• ⚡ Desempenho: alto desempenho\n• 📸 Câmeras: tripla 12MP\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: câmera nível profissional",
+          "preco": "2.150,00",
+          "parcelamentoMax": 12,
           "imagens": [
-            "",
-            "",
-            ""
+            "11ProM-1.jpg",
+            "11ProM-2.jpg",
+            "11ProM-3.jpg"
           ]
         }
       ]
     },
     {
-      "nome": "iphone 30",
-      "descricao": "sofisticação",
-      "imagem": "14-2.jpg",
+      "nome": "iPhone 12",
+      "descricao": "Mais desempenho e recursos avançados de câmera, com acabamento sofisticado e excelente qualidade fotográfica.",
+      "imagem": "Capa12.jpg",
       "versoes": [
         {
-          "titulo": "",
-          "specs": "",
-          "preco": "290,20",
-          "parcelamentoMax": 10,
+          "titulo": "🔹 iPhone 12 — 128GB / 256GB",
+          "specs": "• 🔋 Saúde da bateria: 80%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: OLED sem riscos\n• ⚡ Desempenho: muito rápido\n• 📸 Câmeras: dupla 12MP\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: já tem 5G",
+          "preco": "2.200",
+          "parcelamentoMax": 12,
           "imagens": [
-            "",
-            "",
-            ""
+            "12-1.jpg",
+            "12-2.jpg",
+            "12-3.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 12 Pro — 128GB / 256GB",
+          "specs": "Modelos disponíveis:\nPro  |  Pro Max\n\n• 🔋 Saúde da bateria: 78%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: OLED em excelente estado\n• ⚡ Desempenho: alto nível\n• 📸 Câmeras: tripla + LiDAR\n• 🔒 Face ID: ok\n• 💡 Diferencial: fotos noturnas melhores",
+          "preco": "2.500,90",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "12ProM-1.jpg",
+            "12ProM-2.jpg",
+            "12ProM-3.jpg"
           ]
         }
       ]
     },
     {
-      "nome": "Novo Produto",
-      "descricao": "",
-      "imagem": "capa.jpg",
-      "versoes": []
+      "nome": "iPhone 13",
+      "descricao": "Desempenho rápido e bateria melhorada, com câmeras que entregam fotos incríveis com facilidade.",
+      "imagem": "Capa13.jpg",
+      "versoes": [
+        {
+          "titulo": "🔹 iPhone 13 — 128GB / 256GB",
+          "specs": "• 🔋 Saúde da bateria: 85%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: sem detalhes\n• ⚡ Desempenho: muito rápido\n• 📸 Câmeras: dupla 12MP\n• 🔒 Face ID: ok\n• 💡 Diferencial: bateria melhor que o 12",
+          "preco": "2.600,00",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "13-1.jpg",
+            "13-2.jpg",
+            "13-3.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 13 Pro — 128GB / 256GB",
+          "specs": "Modelos disponíveis:\nPro  |  Pro Max\n\n• 🔋 Saúde da bateria: 85%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: 120Hz em perfeito estado\n• ⚡ Desempenho: topo de linha\n• 📸 Câmeras: tripla 12MP\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: fluidez + câmera avançada",
+          "preco": "2.700,00",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "13ProM-1.jpg",
+            "13ProM-2.jpg",
+            "13ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 14",
+      "descricao": "Tecnologia de ponta com visual moderno e recursos avançados para fotos, vídeos e uso intenso.",
+      "imagem": "Capa14.jpg",
+      "versoes": [
+        {
+          "titulo": "🔹 iPhone 14 — 128GB / 256GB",
+          "specs": "• 🔋 Saúde da bateria: 90%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: sem riscos\n• ⚡ Desempenho: muito rápido\n• 📸 Câmeras: dupla 12MP\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: mais novo e confiável",
+          "preco": "2.800,90",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "14-1.jpg",
+            "14-2.jpg",
+            "14-3.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 14 Pro — 128GB / 256GB",
+          "specs": "Modelos disponíveis:\nPro  |  Pro Max\n\n• 🔋 Saúde da bateria: 85%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: 120Hz + sem trincas\n• ⚡ Desempenho: altíssimo\n• 📸 Câmeras: 48MP + sistema Pro\n• 🔒 Face ID: ok\n• 💡 Diferencial: Dynamic Island",
+          "preco": "2.950,00",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "14ProM-1.jpg",
+            "14ProM-2.jpg",
+            "14ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 15",
+      "descricao": "Novo design com USB-C, câmera de alta resolução e desempenho moderno para o dia a dia.",
+      "imagem": "Capa15.jpg",
+      "versoes": [
+        {
+          "titulo": "🔹 iPhone 15 — 128GB / 256GB",
+          "specs": "• 🔋 Saúde da bateria: 90%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: sem detalhes\n• ⚡ Desempenho: extremamente rápido\n• 📸 Câmeras: 48MP\n• 🔒 Face ID: ok\n• 💡 Diferencial: USB-C",
+          "preco": "3.190,90",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "15-1.jpg",
+            "15-2.jpg",
+            "15-3.jpg"
+          ]
+        },
+        {
+          "titulo": "🔹 iPhone 15 Pro — 128GB / 256GB",
+          "specs": "Modelos disponíveis:\nPro  |  Pro Max\n\n• 🔋 Saúde da bateria: 90%+\n• 📦 Armazenamento: 128GB / 256GB\n• 📱 Tela: 120Hz impecável\n• ⚡ Desempenho: A17 Pro (topo)\n• 📸 Câmeras: sistema Pro\n• 🔒 Face ID: funcionando\n• 💡 Diferencial: acabamento em titânio",
+          "preco": "3.200,90",
+          "parcelamentoMax": 12,
+          "imagens": [
+            "15Pro-1.jpg",
+            "15Pro-2.jpg",
+            "15Pro-3.jpg"
+          ]
+        }
+      ]
     }
   ]
 }
