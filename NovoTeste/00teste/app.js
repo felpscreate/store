@@ -481,11 +481,11 @@ if (
     msg.startsWith("boa tarde") ||
     msg.startsWith("boa noite")
 ) 
-{
+//{
 //setTimeout(() => {
    // mostrarOpcoesPrincipais();
 //}, 700); // maior que o delay do sendMsg
-
+{
 return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
 } 
     //if (
@@ -543,9 +543,9 @@ return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
 if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
     abrirPorNome("11") || abrirPorNome("12");
 
-    setTimeout(() => {
-        mostrarOpcoesPrincipais();
-    }, 500);
+    //setTimeout(() => {
+      //  mostrarOpcoesPrincipais();
+    //}, 500);
 
     return "Temos várias opções 💰 Me diz o que você prefere 👇";
 }
@@ -596,7 +596,9 @@ if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
         .trim()
         .replace(/[!?.]/g, "");
        
-    const resp = responderIA(text) || "Deixa eu te ajudar melhor 👇";
+   //  const resp = responderIA(text) || "Deixa eu te ajudar melhor 👇";
+   const resp = responderIA(msg) || "Deixa eu te ajudar melhor 👇";
+
 
     setTimeout(() => {
         addMsg(resp, "ia");
