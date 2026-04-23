@@ -480,13 +480,13 @@ if (
     msg.startsWith("bom dia") ||
     msg.startsWith("boa tarde") ||
     msg.startsWith("boa noite")
-) {
-    setTimeout(() => {
-        mostrarOpcoesPrincipais();
-    }, 300);
+) 
+{
+//setTimeout(() => {
+   // mostrarOpcoesPrincipais();
+//}, 700); // maior que o delay do sendMsg
 
-    return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
-}
+return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
        
     //if (
       //  msg.includes("oi") ||
@@ -590,11 +590,32 @@ if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
     if (!text) return;
 
     addMsg(text, "user");
-
+       
+    const msg = text
+        .toLowerCase()
+        .trim()
+        .replace(/[!?.]/g, "");
+       
     const resp = responderIA(text) || "Deixa eu te ajudar melhor 👇";
 
     setTimeout(() => {
         addMsg(resp, "ia");
+
+       // 👇 DETECÇÃO COMPLETA DE SAUDAÇÃO
+        if (
+            msg === "oi" ||
+            msg === "ola" ||
+            msg === "olá" ||
+            msg === "opa" ||
+            msg.startsWith("bom dia") ||
+            msg.startsWith("boa tarde") ||
+            msg.startsWith("boa noite")
+        ) {
+            setTimeout(() => {
+                mostrarOpcoesPrincipais();
+            }, 300);
+        }
+    
     }, 400);
 
     input.value = "";
