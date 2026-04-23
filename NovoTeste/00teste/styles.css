@@ -886,9 +886,8 @@ body {
         -webkit-backdrop-filter: blur(6px);
     }
 
-    /* 👉 ESQUERDA (meia lua) */
     .prev-control {
-        left: -20px; /* metade pra fora */
+        left: -20px;
         border-radius: 0 50px 50px 0;
         background: linear-gradient(
             to right,
@@ -897,9 +896,8 @@ body {
         );
     }
 
-    /* 👉 DIREITA (meia lua) */
     .next-control {
-        right: -20px; /* metade pra fora */
+        right: -20px;
         border-radius: 50px 0 0 50px;
         background: linear-gradient(
             to left,
@@ -907,5 +905,9 @@ body {
             rgba(255,255,255,0.05)
         );
     }
-}
 
+    .modal-content {
+        position: relative;
+        overflow: visible; /* 👈 AQUI ESTÁ O SEGREDO */
+    }
+}
