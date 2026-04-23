@@ -874,7 +874,7 @@ body {
     /* 👉 LIBERA SCROLL */
     .modal-overlay {
         align-items: flex-start;
-        overflow-y: auto;
+        overflow-y: auto; /* ✅ correto */
     }
 
     .modal-content {
@@ -895,7 +895,6 @@ body {
     .modal-text {
         display: flex;
         flex-direction: column;
-        gap: 12px; /* 👈 melhora espaçamento */
     }
 
     .modal-image { order: 1; }
@@ -913,51 +912,35 @@ body {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        width: 56px;
-        height: 56px;
+        width: 60px;
+        height: 60px;
         z-index: 9999;
         align-items: center;
         justify-content: center;
         color: #fff;
-        font-size: 18px;
+        font-size: 20px;
         border: none;
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
-        opacity: 1;
     }
 
     .prev-control {
-        left: -12px;
+        left: -20px;
         border-radius: 0 50px 50px 0;
         background: linear-gradient(
             to right,
-            rgba(255,255,255,0.35),
-            rgba(255,255,255,0.08)
+            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.05)
         );
     }
 
     .next-control {
-        right: -12px;
+        right: -20px;
         border-radius: 50px 0 0 50px;
         background: linear-gradient(
             to left,
-            rgba(255,255,255,0.35),
-            rgba(255,255,255,0.08)
+            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.05)
         );
-    }
-
-    /* 👉 AJUSTE DE ESPAÇOS (UX melhor) */
-    .price {
-        margin-top: 8px;
-    }
-
-    .parcelas {
-        margin-bottom: 10px;
-    }
-
-    .btn-buy,
-    .cta-btn {
-        margin-top: 10px;
-        margin-bottom: 20px;
     }
 }
