@@ -910,4 +910,7 @@ body {
         position: relative;
         overflow: visible; /* 👈 AQUI ESTÁ O SEGREDO */
     }
+	.modal-overlay {
+    overflow: visible;
+}
 }
