@@ -943,4 +943,14 @@ Com base no meu @mobile, retiro algo ou só adicio e ondeed?
     display: flex;
     flex-direction: column;
 }
+	.slide-title { order: 1; }
+.specs-content { order: 2; }
+.price { order: 3; }
+.parcelas,
+.parcelas-valor { order: 4; }
+
+/* botão (container dele) */
+.modal-text > div:last-child {
+    order: 5;
+}
 }
