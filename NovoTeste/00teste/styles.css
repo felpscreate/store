@@ -936,7 +936,11 @@ Com base no meu @mobile, retiro algo ou só adicio e ondeed?
 	/* ===== ORDEM MOBILE (SEM QUEBRAR NADA) ===== */
 
 .carousel-slide {
+    display: flex;
     flex-direction: column;
+}
+	.modal-image {
+    order: -1;
 }
 
 .modal-text {
