@@ -467,9 +467,9 @@ function initChatIA() {
     //msg = msg.toLowerCase();
        //msg = msg.toLowerCase().trim();
        msg = msg
-   // .toLowerCase()
-   // .trim()
-   // .replace(/[!?.]/g, "");
+   .toLowerCase()
+    .trim()
+    .replace(/[!?.]/g, "");
 
            // 👋 SAUDAÇÃO (COLOCA AQUI NO TOPO)
 if (
@@ -487,7 +487,7 @@ if (
 //}, 700); // maior que o delay do sendMsg
 
 return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
-       
+} 
     //if (
       //  msg.includes("oi") ||
       //  msg.includes("olá") ||
