@@ -431,9 +431,58 @@ function initChatIA() {
         messages.scrollTop = messages.scrollHeight;
     }
 
+   function responderRapido(texto) {
+        addMsg(texto, "user");
+
+        const resp = responderIA(texto);
+
+        setTimeout(() => {
+            addMsg(resp, "ia");
+        }, 300);
+    }
+   
+   function mostrarOpcoesPrincipais() {
+    const opcoes = document.createElement("div");
+    opcoes.className = "opcoes";
+
+    const botoes = [
+        { texto: "💰 Ver mais baratos", acao: () => responderRapido("barato") },
+        { texto: "📸 Melhor câmera", acao: () => responderRapido("câmera") },
+        { texto: "🔋 Melhor bateria", acao: () => responderRapido("bateria") },
+        { texto: "🚀 Melhor modelo", acao: () => responderRapido("melhor") }
+    ];
+
+    botoes.forEach(btn => {
+        const b = document.createElement("button");
+        b.textContent = btn.texto;
+        b.onclick = btn.acao;
+        opcoes.appendChild(b);
+    });
+
+    messages.appendChild(opcoes);
+    messages.scrollTop = messages.scrollHeight;
+}
+   
     function responderIA(msg) {
     msg = msg.toLowerCase();
 
+           // 👋 SAUDAÇÃO (COLOCA AQUI NO TOPO)
+    if (
+        msg.includes("oi") ||
+        msg.includes("olá") ||
+        msg.includes("ola") ||
+        msg.includes("opa") ||
+        msg.includes("bom dia") ||
+        msg.includes("boa tarde") ||
+        msg.includes("boa noite")
+    ) {
+        setTimeout(() => {
+            mostrarOpcoesPrincipais();
+        }, 300);
+
+        return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
+    }
+       
     const produtos = document.querySelectorAll('[data-produto]');
 
     function abrirPorNome(nome) {
@@ -450,7 +499,7 @@ function initChatIA() {
         }
         return false;
     }
-
+       
     // 🔎 MODELO DIRETO
     if (msg.includes("iphone")) {
         let modelo = msg.replace("iphone", "").trim();
@@ -468,11 +517,16 @@ function initChatIA() {
         return "Tenho opções mais acessíveis e com ótimo custo-benefício 💰";
     }
 
-    // 💰 PERGUNTA DE PREÇO (AQUI É ONDE ENTRA O TEU BLOCO)
-    if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
-        abrirPorNome("11") || abrirPorNome("12");
-        return "Temos várias opções 💰 Me diz: prefere mais barato ou melhor desempenho?";
-    }
+    // 💰 PERGUNTA DE PREÇO (Atualizado)
+if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
+    abrirPorNome("11") || abrirPorNome("12");
+
+    setTimeout(() => {
+        mostrarOpcoesPrincipais();
+    }, 500);
+
+    return "Temos várias opções 💰 Me diz o que você prefere 👇";
+}
 
     // 📸 CÂMERA
     if (msg.includes("câmera") || msg.includes("foto") || msg.includes("vídeo")) {
