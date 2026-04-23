@@ -872,6 +872,7 @@ body {
 Com base no meu @mobile, retiro algo ou só adicio e ondeed?
 @media (max-width: 768px) {
 
+		
     /* 👉 LIBERA SCROLL */
     .modal-overlay {
         align-items: flex-start;
@@ -931,5 +932,15 @@ Com base no meu @mobile, retiro algo ou só adicio e ondeed?
 }
 	.modal-overlay {
     overflow: visible;
+}
+	/* ===== ORDEM MOBILE (SEM QUEBRAR NADA) ===== */
+
+.carousel-slide {
+    flex-direction: column;
+}
+
+.modal-text {
+    display: flex;
+    flex-direction: column;
 }
 }
