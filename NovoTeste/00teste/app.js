@@ -464,24 +464,46 @@ function initChatIA() {
 }
    
     function responderIA(msg) {
-    msg = msg.toLowerCase();
+    //msg = msg.toLowerCase();
+       //msg = msg.toLowerCase().trim();
+       msg = msg
+    .toLowerCase()
+    .trim()
+    .replace(/[!?.]/g, "");
 
            // 👋 SAUDAÇÃO (COLOCA AQUI NO TOPO)
-    if (
-        msg.includes("oi") ||
-        msg.includes("olá") ||
-        msg.includes("ola") ||
-        msg.includes("opa") ||
-        msg.includes("bom dia") ||
-        msg.includes("boa tarde") ||
-        msg.includes("boa noite")
-    ) {
-        setTimeout(() => {
-            mostrarOpcoesPrincipais();
-        }, 300);
+if (
+    msg === "oi" ||
+    msg === "ola" ||
+    msg === "olá" ||
+    msg === "opa" ||
+    msg.startsWith("bom dia") ||
+    msg.startsWith("boa tarde") ||
+    msg.startsWith("boa noite")
+) {
+    setTimeout(() => {
+        mostrarOpcoesPrincipais();
+    }, 300);
 
-        return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
-    }
+    return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
+}
+       
+    //if (
+      //  msg.includes("oi") ||
+      //  msg.includes("olá") ||
+       // msg.includes("ola") ||
+       // msg.includes("opa") ||
+       // msg.includes("bom dia") ||
+       // msg.includes("boa tarde") ||
+       // msg.includes("boa noite")
+   // ) 
+      // {
+     //   setTimeout(() => {
+       //     mostrarOpcoesPrincipais();
+     //  }, 300);
+
+      //  return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
+   // }
        
     const produtos = document.querySelectorAll('[data-produto]');
 
