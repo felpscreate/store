@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Store iPhone | Lançamentos</title>
+    <meta name="description" content="Descubra a nova coleção da Vibe Store iPhone com design minimalista e máxima performance.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header blur-effect fade-in">
+        <div class="container header-content">
+            <a href="#" class="logo" id="dyn-header-name">Vibe Store iPhone</a>
+            <nav class="nav-links">
+                <a href="#produtos">Lançamentos</a>
+                <a href="#produtos" class="highlight">Promoções</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero fade-in">
+            <div class="container hero-content">
+                <h1 id="dyn-hero-title">A Nova Era<br>do Design.</h1>
+                <p>Minimalismo encontra a máxima performance.</p>
+                <a href="#produtos" class="btn-primary">Descubra</a>
+            </div>
+        </section>
+        
+<!-- Mini Social Proof -->
+<section class="mini-proof-section">
+  <div class="container">
+    <p class="mini-proof">+150 vendidos ⭐</p>
+  </div>
+</section>
+        
+        <!-- Products Section -->
+        <section id="produtos" class="products">
+            <div class="container">
+                <div class="grid-4x2" id="produtos-grid">
+                    <!-- Conteúdo gerado dinamicamente -->
+                </div>
+            </div>
+        </section>
+        
+<!-- Social Proof -->
+<section class="social-proof-section">
+  <div class="container">
+    <h2><span>+150</span> iPhones vendidos</h2>
+    <p>Mais de 150 clientes satisfeitos 📱</p>
+  </div>
+</section>
+        
+        <!-- CTA Final -->
+        <section class="cta-section fade-in">
+            <div class="container cta-container blur-effect">
+                <h2 class="cta-title" id="dyn-cta-text">Não encontrou o modelo que deseja?</h2>
+<p class="cta-text">
+Fale conosco e encontre seu iPhone ideal.<br>
+📱 Aceitamos seu usado na troca.
+</p>
+                <a href="https://api.whatsapp.com/send?phone=555185729132&text=N%C3%A3o%20encontrei%20o%20modelo%20que%20desejo" 
+   class="btn btn-buy cta-btn" 
+   target="_blank" 
+   rel="noopener noreferrer">
+
+   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-right:8px;">
+       <path d="M20.52 3.48A11.77 11.77 0 0 0 12.01 0C5.38 0 .02 5.36.02 12c0 2.12.55 4.18 1.6 6L0 24l6.2-1.62a11.94 11.94 0 0 0 5.81 1.48h.01c6.63 0 11.99-5.36 11.99-12 0-3.2-1.25-6.21-3.49-8.38zM12 21.3c-1.82 0-3.6-.49-5.15-1.42l-.37-.22-3.68.96.98-3.59-.24-.37A9.28 9.28 0 0 1 2.7 12c0-5.13 4.17-9.3 9.3-9.3 2.48 0 4.8.97 6.55 2.72A9.21 9.21 0 0 1 21.3 12c0 5.13-4.17 9.3-9.3 9.3zm5.1-6.9c-.28-.14-1.66-.82-1.92-.91-.26-.1-.45-.14-.64.14-.19.28-.73.91-.9 1.1-.17.19-.33.21-.61.07-.28-.14-1.17-.43-2.23-1.37-.82-.73-1.38-1.63-1.54-1.91-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.49.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.35s-.98.96-.98 2.34c0 1.38 1 2.72 1.14 2.91.14.19 1.96 2.99 4.75 4.2.66.28 1.17.45 1.57.57.66.21 1.26.18 1.73.11.53-.08 1.66-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.54-.33z"/>
+   </svg>
+
+   Falar no WhatsApp
+</a>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p id="dyn-footer-name">&copy; 2026 Vibe Store iPhone. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal System -->
+    <div id="product-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <button class="carousel-control prev-control" aria-label="Anterior">&#8592;</button>
+            <button class="carousel-control next-control" aria-label="Próximo">&#8594;</button>
+            <div class="modal-carousel-container" id="modal-carousel-container">
+                <!-- Slides injetados aqui via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- IA Assistant Chat -->
+    <div id="chat-btn">
+        <svg fill="#fff" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 2C6.477 2 2 6.035 2 11c0 2.825 1.472 5.342 3.784 6.967-.318 1.405-1.077 2.836-1.121 2.915-.07.127-.038.286.074.377.112.091.272.087.38-.01.037-.033 1.636-1.488 2.92-2.146 1.25.352 2.58.543 3.963.543 5.523 0 10-4.035 10-9s-4.477-9-10-9zm0 16c-1.282 0-2.525-.183-3.69-.516-.14-.04-.294-.02-.416.056-1.05.65-2.28 1.57-2.613 1.815.195-.733.682-1.84.95-2.827.042-.152.008-.315-.093-.437C4.195 14.654 3 12.923 3 11c0-4.411 4.037-8 9-8s9 3.589 9 8-4.037 8-9 8z"></path>
+        </svg>
+    </div>
+    <div id="chat-box">
+        <div class="chat-header">Assistente de Vendas</div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="msg ia">Olá! Sou o assistente de vendas da Vibe Store. Me diga como posso te ajudar?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+            <button id="chat-send">Enviar</button>
+        </div>
+        <div class="chat-footer">
+            <a href="https://api.whatsapp.com/send?phone=555185729132" target="_blank">Falar com a Vibe Store</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
