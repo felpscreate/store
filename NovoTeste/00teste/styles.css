@@ -988,7 +988,9 @@ Com base no meu @mobile, retiro algo ou só adicio e ondeed?
 }
 
 .mini-proof {
-  font-size: 14px;
-  color: #aaa;
-  letter-spacing: 0.5px;
+  font-size: 13px;
+  color: #e6d5a3;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
 }
