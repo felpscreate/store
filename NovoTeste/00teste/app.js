@@ -467,9 +467,9 @@ function initChatIA() {
     //msg = msg.toLowerCase();
        //msg = msg.toLowerCase().trim();
        msg = msg
-    .toLowerCase()
-    .trim()
-    .replace(/[!?.]/g, "");
+   // .toLowerCase()
+   // .trim()
+   // .replace(/[!?.]/g, "");
 
            // 👋 SAUDAÇÃO (COLOCA AQUI NO TOPO)
 if (
