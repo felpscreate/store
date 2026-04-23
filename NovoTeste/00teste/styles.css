@@ -847,3 +847,24 @@ body {
 #chat-box.active {
   display: flex;
 }
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.opcoes button {
+    background: #f1f1f1;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.opcoes button:hover {
+    background: #ddd;
+}
