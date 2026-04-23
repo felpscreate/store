@@ -869,12 +869,12 @@ body {
 .opcoes button:hover {
     background: #ddd;
 }
+Com base no meu @mobile, retiro algo ou só adicio e ondeed?
 @media (max-width: 768px) {
 
     /* 👉 LIBERA SCROLL */
     .modal-overlay {
         align-items: flex-start;
-        overflow-y: auto; /* ✅ correto */
     }
 
     .modal-content {
@@ -886,28 +886,8 @@ body {
         position: relative;
     }
 
-    /* 👉 LAYOUT MOBILE (ORDEM CORRETA) */
-    .carousel-slide {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-text {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .modal-image { order: 1; }
-    .slide-title { order: 2; }
-    .specs-content { order: 3; }
-    .price { order: 4; }
-    .parcelas,
-    .parcelas-valor { order: 5; }
-    .btn-buy,
-    .cta-btn { order: 6; }
-
-    /* 👉 BOTÕES MEIA LUA */
-    .carousel-control {
+    /* 👉 BOTÕES */
+	    .carousel-control {
         display: flex !important;
         position: absolute;
         top: 50%;
@@ -943,4 +923,13 @@ body {
             rgba(255,255,255,0.05)
         );
     }
+
+.modal-content {
+    position: relative;
+    overflow-x: visible;  /* 👈 deixa botão sair lateral */
+    overflow-y: auto;     /* 👈 mantém scroll */
+}
+	.modal-overlay {
+    overflow: visible;
+}
 }
