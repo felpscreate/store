@@ -870,7 +870,23 @@ body {
     background: #ddd;
 }
 @media (max-width: 768px) {
-    .carousel-control {
+
+    /* 👉 LIBERA SCROLL */
+    .modal-overlay {
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        margin-top: 40px;
+        max-height: 90vh;
+        overflow-y: auto;
+        overflow-x: visible;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+
+    /* 👉 BOTÕES */
+	    .carousel-control {
         display: flex !important;
         position: absolute;
         top: 50%;
