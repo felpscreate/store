@@ -409,7 +409,7 @@ function gerarParcelasUI(valor, maxParcelas, index, titulo) {
 
     atualizarParcela(1);
 }
-
+// CHAT 
 function initChatIA() {
     const btn = document.getElementById("chat-btn");
     const box = document.getElementById("chat-box");
@@ -531,7 +531,7 @@ function initChatIA() {
     });
 
     // 💬 Mensagem inicial automática
-    setTimeout(() => {
-        addMsg("Olá! 👋 Posso te ajudar a escolher seu iPhone.\nQuer algo mais barato, melhor câmera ou bateria?", "ia");
-    }, 800);
+    //setTimeout(() => {
+     //   addMsg("Olá! 👋 Posso te ajudar a escolher seu iPhone.\nQuer algo mais barato, melhor câmera ou bateria?", "ia");
+   // }, 800);
 }
