@@ -907,10 +907,11 @@ body {
         );
     }
 
-    .modal-content {
-        position: relative;
-        overflow: visible; /* 👈 AQUI ESTÁ O SEGREDO */
-    }
+.modal-content {
+    position: relative;
+    overflow-x: visible;  /* 👈 deixa botão sair lateral */
+    overflow-y: auto;     /* 👈 mantém scroll */
+}
 	.modal-overlay {
     overflow: visible;
 }
