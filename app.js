@@ -320,22 +320,34 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <h3>${nomeProduto}</h3>
                                 <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">${prod.descricao || ''}</p>
                                 <span class="price">${priceFallback}</span>
-                                <div class="buttons" style="margin-top: 16px;">
-                                    <a href="https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(zapFallback)}" class="btn btn-buy" target="_blank" rel="noopener noreferrer">Comprar</a>
+ <div class="buttons" style="margin-top: 16px;">
+    <button class="btn btn-buy open-modal-btn">Comprar</button>
+</div>
                                 </div>
                             </div>
                         `;
                         grid.appendChild(card);
                         
                         // Add open modal listener
-                        const modalBtn = card.querySelector('.open-modal-btn');
-                        if (modalBtn) {
-                            modalBtn.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                openModal(prod, index);
-                            });
-                        }
+
+                       const modalBtns = card.querySelectorAll('.open-modal-btn');
+
+modalBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal(prod, index);
+    });
+});
+                       
+                        //const modalBtn = card.querySelector('.open-modal-btn');
+                      //  if (modalBtn) {
+                          //  modalBtn.addEventListener('click', (e) => {
+                            //    e.preventDefault();
+                            //    e.stopPropagation();
+                            //    openModal(prod, index);
+                           // });
+                       // }
 
                         // Observe for fade-in
                         fadeObserver.observe(card);
