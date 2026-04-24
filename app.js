@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">${prod.descricao || ''}</p>
                                 <span class="price">${priceFallback}</span>
  <div class="buttons" style="margin-top: 16px;">
-    <button class="btn btn-buy open-modal-btn">👉 Ver detalhes</button>
+    <button class="btn btn-buy open-modal-btn">Ver detalhes</button>
 </div>
                                 </div>
                             </div>
