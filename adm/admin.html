@@ -1,173 +1,329 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo | Configurações do Site</title>
+    <title>Painel Administrativo | Vitrine</title>
     <link rel="stylesheet" href="admin-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="admin-layout">
-        <!-- Sidebar -->
+    <section id="login-screen" class="login-screen">
+        <div class="login-card">
+            <p class="eyebrow">Painel restrito</p>
+            <h1>Entrar no admin</h1>
+            <p class="muted">Use o acesso local para gerenciar produtos, imagens e configuracoes da vitrine.</p>
+            <form id="login-form" class="login-form">
+                <label for="login-user">Usuario</label>
+                <input id="login-user" type="text" autocomplete="username" value="admin">
+                <label for="login-pass">Senha</label>
+                <input id="login-pass" type="password" autocomplete="current-password" placeholder="Digite a senha">
+                <button class="btn-primary" type="submit">Entrar</button>
+                <p id="login-error" class="form-alert" role="alert"></p>
+            </form>
+            <p class="login-hint">Padrao inicial: usuario <strong>admin</strong> e senha <strong>admin123</strong>. Altere em <code>admin.js</code>.</p>
+        </div>
+    </section>
+
+    <div id="admin-app" class="admin-layout is-hidden">
         <aside class="sidebar">
             <div class="logo-area">
-                <h2>Admin</h2>
+                <span class="logo-mark">VS</span>
+                <div>
+                    <h2>Admin Store</h2>
+                    <p>Vitrine de iPhones</p>
+                </div>
             </div>
-            <nav class="menu">
-                <a href="#tab-geral" class="menu-item active" data-tab="tab-geral">Configurações Gerais</a>
-                <a href="#tab-produtos" class="menu-item" data-tab="tab-produtos">Produtos e Versões</a>
+
+            <nav class="menu" aria-label="Menu administrativo">
+                <a href="#tab-geral" class="menu-item active" data-tab="tab-geral">Geral</a>
+                <a href="#tab-produtos" class="menu-item" data-tab="tab-produtos">Produtos</a>
+                <a href="#tab-ajuda" class="menu-item" data-tab="tab-ajuda">Ajuda</a>
             </nav>
+
+            <div class="sidebar-panel">
+                <span class="status-dot" id="folder-status-dot"></span>
+                <div>
+                    <strong id="folder-status-title">Pasta nao conectada</strong>
+                    <p id="folder-status-text">Conecte a pasta Store para salvar direto.</p>
+                </div>
+            </div>
+
             <div class="actions-area">
-                <button id="btn-save" class="btn-primary">💾 Salvar e Baixar JSON</button>
+                <div class="json-config">
+                    <button id="btn-json-config" class="btn-secondary json-config-toggle" type="button" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19.43 12.98c.04-.32.07-.65.07-.98s-.02-.66-.07-.98l2.11-1.65-2-3.46-2.49 1a7.2 7.2 0 0 0-1.69-.98L15 3h-4l-.36 2.93c-.6.23-1.17.56-1.69.98l-2.49-1-2 3.46 2.11 1.65c-.04.32-.07.65-.07.98s.02.66.07.98l-2.11 1.65 2 3.46 2.49-1c.52.42 1.09.75 1.69.98L11 21h4l.36-2.93c.6-.23 1.17-.56 1.69-.98l2.49 1 2-3.46-2.11-1.65ZM13 15.5A3.5 3.5 0 1 1 13 8a3.5 3.5 0 0 1 0 7.5Z"/>
+                        </svg>
+                        Config. JSON
+                    </button>
+
+                    <div id="json-config-panel" class="json-config-panel">
+                        <button id="btn-connect-folder" class="btn-ghost" type="button">Conectar pasta Store</button>
+                        <button id="btn-save" class="btn-primary" type="button">Salvar JSON direto</button>
+                        <button id="btn-download" class="btn-ghost" type="button">Baixar JSON completo</button>
+                        <button id="btn-import-chat">Importar Chat</button>
+                                    <input type="file" id="file-import-chat" accept="application/json" hidden>
+
+                        <div class="json-accordion">
+                            <button class="json-accordion-trigger" type="button" data-json-section="geral">JSON Geral</button>
+                            <div class="json-accordion-panel" id="json-section-geral">
+                                <button id="btn-export-geral" class="btn-ghost" type="button">Exportar</button>
+                                <button id="btn-import-geral" class="btn-ghost" type="button">Importar</button>
+                            </div>
+                        </div>
+
+                        <div class="json-accordion">
+                            <button class="json-accordion-trigger" type="button" data-json-section="produtos">JSON Produtos</button>
+                            <div class="json-accordion-panel" id="json-section-produtos">
+                                <button id="btn-export-produtos" class="btn-ghost" type="button">Exportar</button>
+                                <button id="btn-import-produtos" class="btn-ghost" type="button">Importar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input id="file-import-geral" type="file" accept="application/json,.json" hidden>
+                <input id="file-import-produtos" type="file" accept="application/json,.json" hidden>
+                <button id="btn-logout" class="btn-ghost danger" type="button">Sair</button>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="content-area">
-            <!-- Tab Geral -->
             <section id="tab-geral" class="tab-content active">
-                <div class="header-section">
-                    <h1>Configurações Globais</h1>
-                    <p>Altere a identidade primária da vitrine.</p>
+                <div class="header-section split">
+                    <div>
+                        <p class="eyebrow">Configuracoes</p>
+                        <h1>Identidade da vitrine</h1>
+                        <p>Edite nome, chamada principal, tema e textos gerais.</p>
+                    </div>
+                    <button id="btn-save-geral" class="btn-primary section-save" type="button">Salvar Geral</button>
                 </div>
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Nome da Loja</label>
-                        <input type="text" id="cfg-nomeLoja" placeholder="Ex: Vibe Store iPhone">
-                    </div>
-                    <div class="form-group">
-                        <label>Título Principal</label>
-                        <input type="text" id="cfg-titulo" placeholder="Pode conter <br> para quebrar linha">
-                    </div>
-                    <div class="form-group">
-                        <label>Cor Primária (Hexadecimal)</label>
-                        <input type="color" id="cfg-corPrimaria" value="#ffffff">
-                    </div>
-                    <div class="form-group">
-                        <label>Tema Base</label>
-                        <select id="cfg-tema">
-                            <option value="dark">Dark (Escuro)</option>
-                            <option value="light">Light (Claro)</option>
-                        </select>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Texto Auxiliar (Busca/Rodapé)</label>
-                        <input type="text" id="cfg-textoBusca" placeholder="Ex: Não encontrou o modelo que deseja?">
+
+                <div class="panel-card">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="cfg-nomeLoja">Nome da loja</label>
+                            <input type="text" id="cfg-nomeLoja" placeholder="Ex: Vibe Store iPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-titulo">Titulo principal</label>
+                            <input type="text" id="cfg-titulo" placeholder="Pode conter <br> para quebrar linha">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-subtituloHero">Texto abaixo do titulo</label>
+                            <input type="text" id="cfg-subtituloHero" placeholder="Ex: Minimalismo encontra a maxima performance.">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-corPrimaria">Cor primaria</label>
+                            <input type="color" id="cfg-corPrimaria" value="#ffffff">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-tema">Tema base</label>
+                            <select id="cfg-tema">
+                                <option value="dark">Escuro</option>
+                                <option value="light">Claro</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="cfg-textoBusca">Texto do CTA final</label>
+                            <input type="text" id="cfg-textoBusca" placeholder="Ex: Nao encontrou o modelo que deseja?">
+                        </div>
+                        <div class="form-group full-width media-field">
+                            <label>Imagem de fundo do hero</label>
+                            <div class="media-picker">
+                                <input type="file" id="cfg-hero-file" accept="image/*">
+                                <input type="hidden" id="cfg-heroImagem">
+                                <div class="image-preview" id="cfg-hero-preview">
+                                    <span class="img-preview-text">Selecionar imagem do hero</span>
+                                    <img id="cfg-hero-preview-img" src="" alt="Preview do hero">
+                                </div>
+                                <p class="help-text">A imagem sera copiada para <code>ImagensProduto</code> ao salvar direto.</p>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="cfg-heroOverlay">Escurecimento da imagem</label>
+                            <div class="range-row">
+                                <input type="range" id="cfg-heroOverlay" min="0.25" max="0.9" step="0.05" value="0.68">
+                                <span id="cfg-heroOverlay-label">68%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Tab Produtos -->
             <section id="tab-produtos" class="tab-content">
-                <div class="header-section">
-                    <h1>Sua Vitrine de Produtos</h1>
-                    <button class="btn-secondary" id="btn-add-product">+ Novo Produto</button>
+                <div class="header-section split">
+                    <div>
+                        <p class="eyebrow">Catalogo</p>
+                        <h1>Produtos e versoes</h1>
+                        <p>Cadastre capa, estoque, promocao, destaque, WhatsApp e fotos por versao.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button id="btn-save-produtos" class="btn-primary section-save" type="button">Salvar Produtos</button>
+                        <button class="btn-secondary" id="btn-add-product" type="button">+ Novo produto</button>
+                    </div>
                 </div>
-                
-                <div id="products-list-container" class="products-accordion admin-produtos">
-                    <!-- Gerado pelo JS -->
+
+                <div id="products-list-container" class="products-accordion admin-produtos"></div>
+            </section>
+
+            <section id="tab-ajuda" class="tab-content">
+                <div class="header-section">
+                    <div>
+                        <p class="eyebrow">Como usar</p>
+                        <h1>Salvamento direto e imagens</h1>
+                    </div>
+                </div>
+                <div class="panel-card help-card">
+                    <h3>Fluxo recomendado</h3>
+                    <p>Abra o admin no Chrome ou Edge, clique em <strong>Conectar pasta Store</strong> e selecione a pasta raiz do projeto, aquela que contem <code>index.html</code>, <code>data</code> e <code>ImagensProduto</code>.</p>
+                    <p>Depois disso, ao escolher imagens nos campos de upload, elas entram na memoria do admin. Ao clicar em <strong>Salvar JSON direto</strong>, o painel grava <code>data/siteData.json</code> e copia as imagens para <code>ImagensProduto</code>.</p>
+                    <p>Se o navegador nao permitir esse recurso, use <strong>Baixar JSON</strong> e mova o arquivo manualmente para a pasta <code>data</code>.</p>
+                    <h3>Sobre login</h3>
+                    <p>Este login e local no navegador. Ele ajuda a ocultar o painel, mas nao substitui uma protecao de servidor. Para seguranca real online, seria necessario backend, hospedagem com autenticacao ou area protegida.</p>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- Template de Produto -->
     <template id="tpl-product">
-        <div class="product-item glass-card" data-prod-index="">
-            <div class="prod-header">
+        <article class="product-item panel-card" data-prod-index="">
+            <header class="prod-header">
                 <div class="prod-header-info">
-                    <h3 class="prod-title-display">Novo Produto</h3>
-                    <span class="badge-status">Draft</span>
+                    <span class="drag-handle">Produto</span>
+                    <div>
+                        <h3 class="prod-title-display">Novo produto</h3>
+                        <p class="prod-subtitle-display">Sem descricao</p>
+                    </div>
                 </div>
-                <button class="btn-danger btn-remove-prod">Remover</button>
-            </div>
+                <div class="header-actions">
+                    <button class="btn-ghost btn-toggle-prod" type="button">Minimizar</button>
+                    <button class="btn-danger btn-remove-prod" type="button">Remover</button>
+                </div>
+            </header>
+            <div class="prod-summary"></div>
+
             <div class="prod-body">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Nome do Produto (Ex: iPhone 17)</label>
-                        <input type="text" class="prod-nome" placeholder="Nome do produto">
+                        <label>Nome do produto</label>
+                        <input type="text" class="prod-nome" placeholder="iPhone">
                     </div>
                     <div class="form-group">
-                        <label>Preview Imagem Capa</label>
-                        <input type="file" class="file-upload prod-file" accept="image/*">
-                        <p class="help-text" style="color: #ffcc00; font-size: 0.8rem; margin-top: 4px;">⚠️ A imagem deve ser colocada manualmente na pasta /ImagensProduto/ com o mesmo nome do arquivo</p>
-                        <div class="image-preview">
-                            <span class="img-preview-text">Sem imagem</span>
-                            <img class="img-preview" src="./assets/placeholder.png" alt="preview">
-                        </div>
-                        <input type="hidden" class="prod-imagem">
+                        <label>Estoque</label>
+                        <input type="number" min="0" class="prod-estoque" placeholder="Ex: 3">
                     </div>
                     <div class="form-group full-width">
-                        <label>Descrição Breve</label>
-                        <textarea class="prod-descricao" rows="2" placeholder="Design sofisticado..."></textarea>
+                        <label>Descricao breve</label>
+                        <textarea class="prod-descricao" rows="2" placeholder="Resumo que aparece no card da vitrine"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp do produto</label>
+                        <input type="text" class="prod-whatsapp" placeholder="Mensagem personalizada ou numero">
+                    </div>
+                    <div class="form-group toggles-row">
+                        <label class="check-line"><input type="checkbox" class="prod-destaque"> Produto em destaque</label>
+                        <label class="check-line"><input type="checkbox" class="prod-promocao"> Produto em promocao</label>
+                    </div>
+                    <div class="form-group full-width media-field">
+                        <label>Imagem de capa</label>
+                        <div class="media-picker">
+                            <input type="file" class="file-upload prod-file" accept="image/*">
+                            <input type="hidden" class="prod-imagem">
+                            <div class="image-preview">
+                                <span class="img-preview-text">Selecionar capa</span>
+                                <img class="img-preview" src="" alt="Preview da capa">
+                            </div>
+                            <p class="help-text">A imagem sera copiada para <code>ImagensProduto</code> ao salvar direto.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="versions-section">
+                <section class="versions-section">
                     <div class="versions-section-header">
-                        <h4>Versões do Produto</h4>
-                        <button class="btn-secondary btn-add-version">+ Criar Versão</button>
+                        <div>
+                            <h4>Versoes do produto</h4>
+                            <p>Use uma versao para cada variacao de memoria, cor ou modelo.</p>
+                        </div>
+                        <button class="btn-secondary btn-add-version" type="button">+ Criar versao</button>
                     </div>
                     <div class="versions-list"></div>
-                </div>
+                </section>
             </div>
-        </div>
+        </article>
     </template>
 
-    <!-- Template de Versão -->
     <template id="tpl-version">
-        <div class="version-item" data-vers-index="">
-            <div class="vers-header">
-                <h5>Versão <span class="vers-num">1</span></h5>
-                <button class="btn-icon btn-remove-vers" title="Remover Variação">&times;</button>
-            </div>
+        <article class="version-item" data-vers-index="">
+            <header class="vers-header">
+                <h5>Versao <span class="vers-num">1</span></h5>
+                <div class="header-actions">
+                    <button class="btn-ghost btn-toggle-vers" type="button">Minimizar</button>
+                    <button class="btn-icon btn-remove-vers" title="Remover versao" type="button">&times;</button>
+                </div>
+            </header>
             <div class="form-grid compact">
                 <div class="form-group full-width">
-                    <label>Título (Ex: iPhone 17 Pro Max — 256GB)</label>
-                    <input type="text" class="vers-titulo" placeholder="Título da versão">
+                    <label>Titulo da versao</label>
+                    <input type="text" class="vers-titulo" placeholder="iPhone">
                 </div>
                 <div class="form-group">
-                    <label>Valor (R$)</label>
-                    <input type="text" class="vers-preco" placeholder="Ex: 5299">
+                    <label>Valor normal (R$)</label>
+                    <input type="text" class="vers-preco" placeholder="Ex: 3290,00">
                 </div>
                 <div class="form-group">
-                    <label>Máx. Parcelas</label>
-                    <input type="number" class="vers-parcelas" placeholder="12" value="12">
+                    <label>Valor promocional (R$)</label>
+                    <input type="text" class="vers-preco-promocional" placeholder="Opcional">
+                </div>
+                <div class="form-group">
+                    <label>Max. parcelas</label>
+                    <input type="number" class="vers-parcelas" min="1" max="24" value="12">
+                </div>
+                <div class="form-group">
+                    <label>Estoque da versao</label>
+                    <input type="number" min="0" class="vers-estoque" placeholder="Opcional">
                 </div>
                 <div class="form-group full-width">
-                    <label>Especificações Detalhadas</label>
-                    <textarea class="vers-specs" rows="4" placeholder="Tela...\nBateria...\nCâmera... (Quebre linha com Enter)"></textarea>
+                    <label>WhatsApp da versao</label>
+                    <input type="text" class="vers-whatsapp" placeholder="Mensagem personalizada para essa versao">
                 </div>
                 <div class="form-group full-width">
-                    <label>Imagens da Versão (Até 3 fotos)</label>
-                    <p class="help-text" style="color: #ffcc00; font-size: 0.8rem; margin-bottom: 8px;">⚠️ As imagens escolhidas devem ser salvas fisicamente em /ImagensProduto/ com seus nomes exatos.</p>
+                    <label>Especificacoes detalhadas</label>
+                    <textarea class="vers-specs" rows="5" placeholder="Tela...&#10;Bateria...&#10;Camera..."></textarea>
+                </div>
+                <div class="form-group full-width media-field">
+                    <label>Imagens da versao, ate 3 fotos</label>
                     <div class="images-upload-grid">
                         <div class="img-upload-box">
                             <span>Img 1</span>
                             <input type="file" class="file-upload vers-img-file" data-idx="0" accept="image/*">
                             <input type="hidden" class="vers-img-hidden" data-idx="0">
-                            <img class="img-preview-mini" src="" style="display:none;">
+                            <img class="img-preview-mini" src="" alt="Preview 1">
                         </div>
                         <div class="img-upload-box">
                             <span>Img 2</span>
                             <input type="file" class="file-upload vers-img-file" data-idx="1" accept="image/*">
                             <input type="hidden" class="vers-img-hidden" data-idx="1">
-                            <img class="img-preview-mini" src="" style="display:none;">
+                            <img class="img-preview-mini" src="" alt="Preview 2">
                         </div>
                         <div class="img-upload-box">
                             <span>Img 3</span>
                             <input type="file" class="file-upload vers-img-file" data-idx="2" accept="image/*">
                             <input type="hidden" class="vers-img-hidden" data-idx="2">
-                            <img class="img-preview-mini" src="" style="display:none;">
+                            <img class="img-preview-mini" src="" alt="Preview 3">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     </template>
 
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="admin.js"></script>
 </body>
 </html>
+
+
+

@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.className = 'carousel-slide';
             
             const precoFallback = versao.preco || "Sob consulta";
-            const zapFallback = versao.whatsapp || "Olá, tenho interesse!";
+            const precoPromocional = versao.precoPromocional || "";
+            const zapFallback = versao.whatsapp || produtoData.whatsapp || "Ola, tenho interesse!";
             const tituloFallback = versao.titulo || produtoData.nome || "Produto";
             
             const imagens = versao.imagens || [];
@@ -73,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 dotsHtml += `<div class="mini-dot" data-tgt="2"></div>`;
             }
             
-            let parsedPrice = parseFloat(precoFallback.replace(/\./g, '').replace(',', '.'));
+            const precoBaseParcelas = precoPromocional || precoFallback;
+            let parsedPrice = parseFloat(String(precoBaseParcelas).replace(/\./g, '').replace(',', '.'));
             let parcelasHtml = '';
             if(!isNaN(parsedPrice) && parsedPrice > 0) {
                 parcelasHtml = `
@@ -96,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="modal-text">
                     <h2 class="slide-title">${tituloFallback}</h2>
                     <div class="specs-content" id="specs-${vIndex}">${specsFormatted}</div>
-                    <div class="price" style="margin-top: 24px; margin-bottom: 0;">${isNaN(precoFallback) ? precoFallback : 'R$ ' + precoFallback}</div>
+                    <div class="price" style="margin-top: 24px; margin-bottom: 0;">${precoPromocional ? '<span class="old-price">R$ ' + precoFallback + '</span><span>R$ ' + precoPromocional + '</span>' : (isNaN(parsedPrice) ? precoFallback : 'R$ ' + precoFallback)}</div>
                     ${parcelasHtml}
                     <div style="margin-top: 24px;">
                         <a href="https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(zapFallback)}" class="btn btn-buy cta-btn" id="btn-zap-${vIndex}" style="padding: 16px 32px;" target="_blank" rel="noopener noreferrer">
@@ -114,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
             initMiniCarousels();
             
             // Build parcelamento logic
-            produtoData.versoes.forEach((versao, vIndex) => {
-                let pPrice = parseFloat((versao.preco || "0").replace(/\./g, '').replace(',', '.'));
+            versoes.forEach((versao, vIndex) => {
+                let pPrice = parseFloat(String(versao.precoPromocional || versao.preco || "0").replace(/\./g, '').replace(',', '.'));
                 if(!isNaN(pPrice) && pPrice > 0) {
                     gerarParcelasUI(pPrice, versao.parcelamentoMax || 12, vIndex, versao.titulo || "Produto");
                 }
@@ -265,6 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         const heroTitle = document.getElementById('dyn-hero-title') || document.querySelector('.hero-title');
                         if (heroTitle) heroTitle.innerHTML = data.config.titulo;
                     }
+                    if(data.config.subtituloHero) {
+                        const heroSubtitle = document.getElementById('dyn-hero-subtitle');
+                        if (heroSubtitle) heroSubtitle.textContent = data.config.subtituloHero;
+                    }
+                    if(data.config.heroImagem) {
+                        document.documentElement.style.setProperty('--hero-image', `url("./ImagensProduto/${data.config.heroImagem}")`);
+                    } else {
+                        document.documentElement.style.setProperty('--hero-image', 'none');
+                    }
+                    if(data.config.heroOverlay !== undefined && data.config.heroOverlay !== '') {
+                        document.documentElement.style.setProperty('--hero-overlay', String(data.config.heroOverlay));
+                    }
                     if(data.config.tema) {
                         document.body.setAttribute('data-theme', data.config.tema);
                     }
@@ -294,7 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     data.produtos.forEach((prod, index) => {
                         const versoes = prod.versoes || [];
                         const primeiraVersao = versoes[0] || {};
-                        const priceFallback = primeiraVersao.preco || "Sob consulta";
+                        const priceFallback = primeiraVersao.precoPromocional || primeiraVersao.preco || "Sob consulta";
+                        const oldPrice = primeiraVersao.precoPromocional && primeiraVersao.preco ? primeiraVersao.preco : "";
+                        const stockLabel = prod.estoque !== undefined && prod.estoque !== null && prod.estoque !== "" ? `${prod.estoque} em estoque` : "";
                         const zapFallback = primeiraVersao.whatsapp || "Olá, tenho interesse!";
                         const nomeProduto = prod.nome || `Produto ${index + 1}`;
                         const nomeFormatado = nomeProduto.toLowerCase().replace(/\s+/g, '');
@@ -317,10 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             <div class="product-info">
+                                <div class="product-badges">${prod.destaque ? '<span>Destaque</span>' : ''}${prod.promocao ? '<span>Promoção</span>' : ''}${stockLabel ? '<span>' + stockLabel + '</span>' : ''}</div>
                                 <h3>${nomeProduto}</h3>
                                 <p style="margin: 8px 0; font-size: 0.9rem; color: var(--text-muted);">${prod.descricao || ''}</p>
-                                <span class="price">${priceFallback}</span>
- <div class="buttons" style="margin-top: 16px;">
+                                <div class="buttons product-actions">
     <button class="btn btn-buy open-modal-btn">Ver detalhes</button>
 </div>
                                 </div>
@@ -378,38 +394,39 @@ function gerarParcelasUI(valor, maxParcelas, index, titulo) {
 
     if (!container || !valorEl) return;
 
-    container.innerHTML = '';
+    const limiteVisivel = 3;
+    let expandido = false;
+    let parcelaSelecionada = 1;
 
-    const limiteVisivel = 5;
+    function renderBotoes() {
+        container.innerHTML = '';
+        const limite = expandido ? maxParcelas : Math.min(maxParcelas, limiteVisivel);
 
-    for (let i = 1; i <= maxParcelas; i++) {
-        if (i > limiteVisivel) break;
+        for (let i = 1; i <= limite; i++) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.textContent = i + 'x';
+            btn.classList.toggle('active', i === parcelaSelecionada);
+            btn.onclick = () => atualizarParcela(i);
+            container.appendChild(btn);
+        }
 
-        const btn = document.createElement('button');
-        btn.textContent = i + 'x';
-        btn.onclick = () => atualizarParcela(i);
-        container.appendChild(btn);
-    }
-
-    // BOTÃO "+"
-    if (maxParcelas > limiteVisivel) {
-        const more = document.createElement('button');
-        more.textContent = '+';
-        more.onclick = () => {
-            container.innerHTML = '';
-
-            for (let i = 1; i <= maxParcelas; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i + 'x';
-                btn.onclick = () => atualizarParcela(i);
-                container.appendChild(btn);
-            }
-        };
-        container.appendChild(more);
+        if (!expandido && maxParcelas > limiteVisivel) {
+            const more = document.createElement('button');
+            more.type = 'button';
+            more.textContent = '+';
+            more.className = 'parcelas-more';
+            more.onclick = () => {
+                expandido = true;
+                renderBotoes();
+            };
+            container.appendChild(more);
+        }
     }
 
     function atualizarParcela(x) {
-        const valorParcela = (valor / x).toFixed(2);
+        parcelaSelecionada = x;
+        const valorParcela = (valor / x).toFixed(2).replace('.', ',');
         valorEl.textContent = `ou ${x}x de R$ ${valorParcela}`;
 
         const btnZap = document.getElementById(`btn-zap-${index}`);
@@ -417,11 +434,14 @@ function gerarParcelasUI(valor, maxParcelas, index, titulo) {
             const texto = `${titulo} em ${x}x de R$ ${valorParcela}`;
             btnZap.href = `https://api.whatsapp.com/send?phone=555185729132&text=${encodeURIComponent(texto)}`;
         }
+
+        renderBotoes();
     }
 
+    renderBotoes();
     atualizarParcela(1);
 }
-// CHAT 
+// CHAT
 function initChatIA() {
     const btn = document.getElementById("chat-btn");
     const box = document.getElementById("chat-box");
@@ -429,11 +449,75 @@ function initChatIA() {
     const send = document.getElementById("chat-send");
     const messages = document.getElementById("chat-messages");
 
-    if (!btn || !box) return;
+    if (!btn || !box || !input || !send || !messages || box.dataset.ready === "true") return;
+    box.dataset.ready = "true";
 
-    btn.addEventListener("click", () => {
-        box.classList.toggle("active");
+    const whatsappBase = "https://api.whatsapp.com/send?phone=555185729132&text=";
+    let ultimoProdutoAberto = null;
+
+    btn.setAttribute("role", "button");
+    btn.setAttribute("aria-label", "Abrir assistente de vendas");
+    btn.setAttribute("tabindex", "0");
+
+    btn.addEventListener("click", toggleChat);
+    btn.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") toggleChat();
     });
+
+    function toggleChat() {
+        box.classList.toggle("active");
+        if (box.classList.contains("active")) {
+            setTimeout(() => input.focus(), 120);
+        }
+    }
+
+    function normalizar(texto) {
+        return texto
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[!?.;,]/g, "")
+            .trim();
+    }
+
+    function getProdutos() {
+        return Array.from(document.querySelectorAll("[data-produto]")).map(card => ({
+            card,
+            chave: card.dataset.produto || "",
+            nome: card.querySelector("h3")?.textContent?.trim() || "Produto",
+            descricao: card.querySelector(".product-info p")?.textContent?.trim() || ""
+        }));
+    }
+
+    function abrirProduto(card) {
+        card?.querySelector(".open-modal-btn")?.click();
+        const produto = getProdutos().find(item => item.card === card);
+        if (produto) ultimoProdutoAberto = produto;
+    }
+
+    function abrirPorBusca(termo) {
+        const query = normalizar(termo).replace(/\s+/g, "");
+        if (!query) return null;
+        const produtos = getProdutos();
+        const encontrado = produtos.find(prod => normalizar(prod.nome).replace(/\s+/g, "").includes(query) || prod.chave.includes(query));
+        if (encontrado) abrirProduto(encontrado.card);
+        return encontrado || null;
+    }
+
+    function extrairModelo(msg) {
+        const match = msg.match(/\b(xr|11|12|13|14|15|16|17)\b/);
+        return match ? match[0] : "";
+    }
+
+    function perguntaSobreProdutoAtual(msg) {
+        return !!ultimoProdutoAberto && (
+            msg.includes("dele") ||
+            msg.includes("desse") ||
+            msg.includes("deste") ||
+            msg.includes("do aparelho") ||
+            msg.includes(normalizar(ultimoProdutoAberto.nome).replace(/iphone/g, "").trim())
+        );
+    }
 
     function addMsg(text, type) {
         const div = document.createElement("div");
@@ -443,206 +527,133 @@ function initChatIA() {
         messages.scrollTop = messages.scrollHeight;
     }
 
-   function responderRapido(texto) {
-        addMsg(texto, "user");
+    function addOptions(options) {
+        const old = messages.querySelector(".opcoes:last-child");
+        if (old) old.remove();
 
-        const resp = responderIA(texto);
+        const wrap = document.createElement("div");
+        wrap.className = "opcoes";
+        options.forEach(option => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.textContent = option.label;
+            button.addEventListener("click", () => responderRapido(option.value || option.label));
+            wrap.appendChild(button);
+        });
+        messages.appendChild(wrap);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function addWhatsappOption(texto) {
+        const link = document.createElement("a");
+        link.className = "chat-whatsapp-link";
+        link.href = whatsappBase + encodeURIComponent(texto);
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Continuar no WhatsApp";
+        messages.appendChild(link);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function opcoesPrincipais() {
+        addOptions([
+            { label: "Mais barato", value: "mais barato" },
+            { label: "Melhor camera", value: "melhor camera" },
+            { label: "Melhor bateria", value: "melhor bateria" },
+            { label: "Linha Pro", value: "linha pro" },
+            { label: "Parcelamento", value: "parcelamento" }
+        ]);
+    }
+
+    function responderRapido(texto) {
+        addMsg(texto, "user");
+        responder(texto);
+    }
+
+    function responder(textoOriginal) {
+        const msg = normalizar(textoOriginal);
+        const produtos = getProdutos();
+
+        let resposta = "";
+        let mostrarOpcoes = false;
+        let abrirWhats = false;
+
+        const saudacao = ["oi", "ola", "opa", "bom dia", "boa tarde", "boa noite"].some(item => msg === item || msg.startsWith(item));
+        if (saudacao) {
+            resposta = "Opa! Me diz o que voce procura: menor preco, camera melhor, bateria boa ou algum modelo especifico?";
+            mostrarOpcoes = true;
+        } else if (msg.includes("parcel") || msg.includes("vezes") || msg.includes("cartao")) {
+            resposta = "Temos parcelamento por modelo. Abra um produto em Ver detalhes e escolha 1x, 2x, 3x ou toque no + para ver todas as parcelas disponiveis.";
+            mostrarOpcoes = true;
+        } else if (msg.includes("troca") || msg.includes("usado") || msg.includes("pega meu") || msg.includes("aceita")) {
+            resposta = "Aceitamos usado na troca. O ideal e chamar no WhatsApp com modelo, estado, bateria e se acompanha caixa/carregador.";
+            abrirWhats = true;
+        } else if (msg.includes("garantia") || msg.includes("procedencia") || msg.includes("original")) {
+            resposta = "Nos detalhes de cada aparelho voce encontra estado, bateria e observacoes. Para confirmar garantia e procedencia do aparelho escolhido, recomendo fechar pelo WhatsApp.";
+            abrirWhats = true;
+        } else if (msg.includes("barato") || msg.includes("menor preco") || msg.includes("mais em conta") || msg.includes("economico")) {
+            const alvo = abrirPorBusca("xr") || abrirPorBusca("11") || produtos[0];
+            if (alvo) abrirProduto(alvo.card);
+            resposta = alvo ? `Separei uma opcao com bom custo-beneficio: ${alvo.nome}. Da uma olhada nos detalhes.` : "Me chama no WhatsApp que eu te mostro as opcoes mais em conta.";
+        } else if (msg.includes("camera") || msg.includes("foto") || msg.includes("video")) {
+            const alvo = abrirPorBusca("pro") || abrirPorBusca("14") || abrirPorBusca("15");
+            resposta = alvo ? `Para camera, eu olharia primeiro a linha Pro. Abri ${alvo.nome} para voce comparar.` : "Para camera, procure modelos Pro ou modelos mais novos.";
+        } else if (msg.includes("bateria") || msg.includes("dura") || msg.includes("carrega")) {
+            const modeloPedido = extrairModelo(msg);
+            const alvo = modeloPedido ? abrirPorBusca(modeloPedido) : (perguntaSobreProdutoAtual(msg) ? ultimoProdutoAberto : null);
+            if (alvo) {
+                abrirProduto(alvo.card);
+                resposta = `A saude/estado da bateria do ${alvo.nome} fica nos detalhes da versao. Abri ele para voce conferir as especificacoes.`;
+            } else {
+                const sugestao = abrirPorBusca("max") || abrirPorBusca("plus") || abrirPorBusca("13") || abrirPorBusca("14");
+                resposta = sugestao ? "Para bateria, modelos Plus/Max costumam ser melhores. Abri uma boa opcao para voce." : "Para bateria, vale priorizar Plus, Pro Max ou modelos mais novos.";
+            }
+        } else if (msg.includes("pro") || msg.includes("linha pro")) {
+            const alvo = abrirPorBusca("pro");
+            resposta = alvo ? `Boa escolha. A linha Pro entrega camera e acabamento superiores. Abri ${alvo.nome}.` : "No momento nao encontrei linha Pro na vitrine carregada.";
+        } else if (msg.includes("melhor") || msg.includes("top") || msg.includes("mais novo")) {
+            const alvo = produtos[produtos.length - 1];
+            if (alvo) abrirProduto(alvo.card);
+            resposta = alvo ? `O mais interessante para olhar primeiro e ${alvo.nome}. Abri os detalhes para voce.` : "Ainda nao encontrei produtos carregados na vitrine.";
+        } else if (msg.includes("iphone")) {
+            const modelo = extrairModelo(msg) || msg.replace("iphone", "").replace(/\b(tem|vc|voce|temos|o|a|um|uma)\b/g, "").trim();
+            const alvo = abrirPorBusca(modelo);
+            resposta = alvo ? `Boa escolha. Abri ${alvo.nome} para voce ver fotos, especificacoes e parcelamento.` : "Nao encontrei exatamente esse modelo na vitrine. Posso te mostrar mais barato, melhor camera ou melhor bateria.";
+            mostrarOpcoes = !alvo;
+        } else if (/\b(xr|11|12|13|14|15|16|17)\b/.test(msg)) {
+            const modelo = extrairModelo(msg);
+            const alvo = abrirPorBusca(modelo);
+            resposta = alvo ? `Abri ${alvo.nome}. Confere as fotos e detalhes.` : "Nao achei esse modelo carregado agora.";
+        } else {
+            resposta = "Posso te ajudar melhor se voce me disser: quer pagar menos, ter camera melhor, bateria melhor ou esta procurando um modelo especifico?";
+            mostrarOpcoes = true;
+        }
 
         setTimeout(() => {
-            addMsg(resp, "ia");
-        }, 300);
+            addMsg(resposta, "ia");
+            if (mostrarOpcoes) opcoesPrincipais();
+            if (abrirWhats) addWhatsappOption(textoOriginal);
+        }, 320);
     }
-   
-   function mostrarOpcoesPrincipais() {
-    const opcoes = document.createElement("div");
-    opcoes.className = "opcoes";
-
-    const botoes = [
-        { texto: "💰 Ver mais baratos", acao: () => responderRapido("barato") },
-        { texto: "📸 Melhor câmera", acao: () => responderRapido("câmera") },
-        { texto: "🔋 Melhor bateria", acao: () => responderRapido("bateria") },
-        { texto: "🚀 Melhor modelo", acao: () => responderRapido("melhor") }
-    ];
-
-    botoes.forEach(btn => {
-        const b = document.createElement("button");
-        b.textContent = btn.texto;
-        b.onclick = btn.acao;
-        opcoes.appendChild(b);
-    });
-
-    messages.appendChild(opcoes);
-    messages.scrollTop = messages.scrollHeight;
-}
-   
-    function responderIA(msg) {
-    //msg = msg.toLowerCase();
-       //msg = msg.toLowerCase().trim();
-       msg = msg
-   .toLowerCase()
-    .trim()
-    .replace(/[!?.]/g, "");
-
-           // 👋 SAUDAÇÃO (COLOCA AQUI NO TOPO)
-if (
-    msg === "oi" ||
-    msg === "ola" ||
-    msg === "olá" ||
-    msg === "opa" ||
-    msg.startsWith("bom dia") ||
-    msg.startsWith("boa tarde") ||
-    msg.startsWith("boa noite")
-) 
-//{
-//setTimeout(() => {
-   // mostrarOpcoesPrincipais();
-//}, 700); // maior que o delay do sendMsg
-{
-return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
-} 
-    //if (
-      //  msg.includes("oi") ||
-      //  msg.includes("olá") ||
-       // msg.includes("ola") ||
-       // msg.includes("opa") ||
-       // msg.includes("bom dia") ||
-       // msg.includes("boa tarde") ||
-       // msg.includes("boa noite")
-   // ) 
-      // {
-     //   setTimeout(() => {
-       //     mostrarOpcoesPrincipais();
-     //  }, 300);
-
-      //  return "Opa! Tudo certo por aí? 😄 Como posso te ajudar?";
-   // }
-       
-    const produtos = document.querySelectorAll('[data-produto]');
-
-    function abrirPorNome(nome) {
-        nome = nome.toLowerCase().replace(/\s+/g, '');
-
-        const alvo = Array.from(produtos).find(p => {
-            const produtoNome = p.dataset.produto.toLowerCase();
-            return produtoNome.includes(nome);
-        });
-
-        if (alvo) {
-            alvo.querySelector('.open-modal-btn')?.click();
-            return true;
-        }
-        return false;
-    }
-       
-    // 🔎 MODELO DIRETO
-    if (msg.includes("iphone")) {
-        let modelo = msg.replace("iphone", "").trim();
-
-        if (abrirPorNome(modelo)) {
-            return "Boa escolha 👌 Esse modelo é muito procurado!";
-        }
-
-        return "Não encontrei exatamente esse modelo, mas posso te sugerir opções 👇";
-    }
-
-    // 💰 PREÇO / BARATO
-    if (msg.includes("barato") || msg.includes("mais em conta")) {
-        abrirPorNome("11") || abrirPorNome("12");
-        return "Tenho opções mais acessíveis e com ótimo custo-benefício 💰";
-    }
-
-    // 💰 PERGUNTA DE PREÇO (Atualizado)
-if (msg.includes("quanto") || msg.includes("valor") || msg.includes("preço")) {
-    abrirPorNome("11") || abrirPorNome("12");
-
-    //setTimeout(() => {
-      //  mostrarOpcoesPrincipais();
-    //}, 500);
-
-    return "Temos várias opções 💰 Me diz o que você prefere 👇";
-}
-
-    // 📸 CÂMERA
-    if (msg.includes("câmera") || msg.includes("foto") || msg.includes("vídeo")) {
-        abrirPorNome("pro");
-        return "Se você quer câmera top, recomendo linha Pro 📸";
-    }
-
-    // 🔋 BATERIA
-    if (msg.includes("bateria") || msg.includes("dura") || msg.includes("carrega")) {
-        abrirPorNome("max") || abrirPorNome("plus");
-        return "Esses modelos têm bateria mais duradoura 🔋";
-    }
-
-    // 👍 USADO / VALE A PENA
-    if (msg.includes("vale a pena") || msg.includes("compensa") || msg.includes("usado")) {
-        abrirPorNome("12") || abrirPorNome("13");
-        return "Sim, vale muito a pena 👍 Esses modelos ainda são rápidos e atualizados";
-    }
-
-    // 🚀 MELHOR MODELO
-    if (msg.includes("melhor") || msg.includes("top") || msg.includes("mais novo")) {
-        const ultimo = produtos[produtos.length - 1];
-        ultimo?.querySelector('.open-modal-btn')?.click();
-        return "Esse é o mais avançado que temos 🚀";
-    }
-
-    // 🧠 COMPARAÇÃO
-    if (msg.includes("diferença") || msg.includes("qual melhor entre")) {
-        abrirPorNome("12");
-        return "Posso te mostrar um ótimo equilíbrio entre preço e desempenho 👍";
-    }
-
-    // 💬 FINAL
-    return "Posso te ajudar melhor 😄 Você busca algo mais barato, melhor câmera ou bateria?";
-}
 
     function sendMsg() {
-    const text = input.value.trim();
-    if (!text) return;
-
-    addMsg(text, "user");
-       
-    const msg = text
-        .toLowerCase()
-        .trim()
-        .replace(/[!?.]/g, "");
-       
-   //  const resp = responderIA(text) || "Deixa eu te ajudar melhor 👇";
-   const resp = responderIA(msg) || "Deixa eu te ajudar melhor 👇";
-
-
-    setTimeout(() => {
-        addMsg(resp, "ia");
-
-       // 👇 DETECÇÃO COMPLETA DE SAUDAÇÃO
-        if (
-            msg === "oi" ||
-            msg === "ola" ||
-            msg === "olá" ||
-            msg === "opa" ||
-            msg.startsWith("bom dia") ||
-            msg.startsWith("boa tarde") ||
-            msg.startsWith("boa noite")
-        ) {
-            setTimeout(() => {
-                mostrarOpcoesPrincipais();
-            }, 300);
-        }
-    
-    }, 400);
-
-    input.value = "";
-}
+        const text = input.value.trim();
+        if (!text) return;
+        addMsg(text, "user");
+        input.value = "";
+        responder(text);
+    }
 
     send.addEventListener("click", sendMsg);
-
-    input.addEventListener("keydown", e => {
-        if (e.key === "Enter") sendMsg();
+    input.addEventListener("keydown", event => {
+        if (event.key === "Enter") sendMsg();
     });
 
-    // 💬 Mensagem inicial automática
-    //setTimeout(() => {
-     //   addMsg("Olá! 👋 Posso te ajudar a escolher seu iPhone.\nQuer algo mais barato, melhor câmera ou bateria?", "ia");
-   // }, 800);
+    setTimeout(() => {
+        if (!messages.dataset.welcomeAdded) {
+            messages.dataset.welcomeAdded = "true";
+            opcoesPrincipais();
+        }
+    }, 500);
 }
+
