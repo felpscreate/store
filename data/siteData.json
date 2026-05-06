@@ -1,0 +1,156 @@
+{
+  "config": {
+    "nomeLoja": "Vibe Store iPhone",
+    "titulo": "A nova era chegou",
+    "subtituloHero": "Minimalismo encontra a maxima performance.",
+    "heroImagem": "Apple.jpg",
+    "heroOverlay": "0.55",
+    "tema": "dark",
+    "corPrimaria": "#ffffff",
+    "textoBusca": "Nao encontrou o que deseja?"
+  },
+  "produtos": [
+    {
+      "nome": "iPhone XR",
+      "descricao": "Design moderno com tela ampla e desempenho confiável para o dia a dia, ideal para quem busca economia sem abrir mão da qualidade.",
+      "imagem": "CapaXR.jpg",
+      "estoque": "",
+      "destaque": true,
+      "promocao": false,
+      "whatsapp": "",
+      "versoes": [
+        {
+          "titulo": "iPhone XR",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "1.290,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "XR-1.jpg",
+            "XR-2.jpg",
+            "XR-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 11",
+      "descricao": "Acabamento premium e sistema de câmeras avançado, pensado para quem busca qualidade profissional em fotos e vídeos.",
+      "imagem": "Capa11.jpg",
+      "estoque": "",
+      "destaque": false,
+      "promocao": false,
+      "whatsapp": "",
+      "versoes": [
+        {
+          "titulo": "iPhone 11",
+          "specs": "\n• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "1.890,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "11-1.jpg",
+            "11-2.jpg",
+            "11-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 11 Pro ",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.150,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "11ProM-1.jpg",
+            "11ProM-2.jpg",
+            "11ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 12",
+      "descricao": "Mais desempenho e recursos avançados de câmera, com acabamento sofisticado e excelente qualidade fotográfica.",
+      "imagem": "Capa12.jpg",
+      "estoque": 1,
+      "destaque": false,
+      "promocao": false,
+      "whatsapp": "",
+      "versoes": [
+        {
+          "titulo": "iPhone 12",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.200",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "12-1.jpg",
+            "12-2.jpg",
+            "12-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone Pro",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.500,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "12ProM-1.jpg",
+            "12ProM-2.jpg",
+            "12ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone 13",
+      "descricao": "Desempenho rápido e bateria melhorada, com câmeras que entregam fotos incríveis com facilidade.",
+      "imagem": "Capa13.jpg",
+      "estoque": "",
+      "destaque": false,
+      "promocao": false,
+      "whatsapp": "",
+      "versoes": [
+        {
+          "titulo": "iPhone 13",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.600,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "13-1.jpg",
+            "13-2.jpg",
+            "13-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 13 Pro",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.700,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "13ProM-1.jpg",
+            "13ProM-2.jpg",
+            "13ProM-3.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}
