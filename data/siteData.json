@@ -1,14 +1,4 @@
 {
-  "config": {
-    "nomeLoja": "Vibe Store iPhone",
-    "titulo": "A nova era chegou",
-    "subtituloHero": "Minimalismo encontra a maxima performance.",
-    "heroImagem": "Apple.jpg",
-    "heroOverlay": "0.55",
-    "tema": "dark",
-    "corPrimaria": "#ffffff",
-    "textoBusca": "Nao encontrou o que deseja?"
-  },
   "produtos": [
     {
       "nome": "iPhone XR",
@@ -148,6 +138,45 @@
             "13ProM-1.jpg",
             "13ProM-2.jpg",
             "13ProM-3.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "nome": "iPhone  14",
+      "descricao": "Desempenho rápido e bateria melhorada, com câmeras que entregam fotos incríveis com facilidade.",
+      "imagem": "Capa14.jpg",
+      "estoque": 2,
+      "destaque": false,
+      "promocao": false,
+      "whatsapp": "",
+      "versoes": [
+        {
+          "titulo": "iPhone 14",
+          "specs": "• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "2.300,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "14-1.jpg",
+            "14-2.jpg",
+            "14-3.jpg"
+          ]
+        },
+        {
+          "titulo": "iPhone 14 Pro",
+          "specs": "Modelos disponíveis: Pro | Pro Max\n\n• 🔋 Saúde da bateria: 80% (original de fábrica)\n• 🛠️ Estado \n    &nbsp;&nbsp;&nbsp;  ➡ 🔧 Nenhuma peça substituída\n    &nbsp;&nbsp;&nbsp;  ➡ 📱 Tela original sem trincas, em ótimo estado\n• 📦 Acompanha\n    &nbsp;&nbsp;&nbsp;  ➡ 🔌 Carregador\n    &nbsp;&nbsp;&nbsp;  ➡ 📦 Caixa original",
+          "preco": "3.500,00",
+          "precoPromocional": "",
+          "parcelamentoMax": 12,
+          "estoque": "",
+          "whatsapp": "",
+          "imagens": [
+            "14ProM-1.jpg",
+            "14ProM-2.jpg",
+            "14ProM-3.jpg"
           ]
         }
       ]
