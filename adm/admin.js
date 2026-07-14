@@ -5,9 +5,9 @@
 
     let siteData = {
         config: {
-            nomeLoja: 'Vibe Store iPhone',
-            titulo: 'A nova era chegou',
-            subtituloHero: 'Minimalismo encontra a maxima performance.',
+            nomeLoja: 'CALLEJA IMPORTS',
+            titulo: 'Tecnologia com Confiança.',
+            subtituloHero: 'Seu próximo upgrade com segurança e confiança.',
             heroImagem: '',
             heroOverlay: 0.68,
             tema: 'dark',
