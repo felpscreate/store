@@ -26,7 +26,7 @@
     --card-border: rgba(0, 0, 0, 0.08);
 }
 
-/* Reset Básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -55,7 +55,6 @@ body {
     padding: 0 24px;
 }
 
-/* Animacões Iniciais (Scroll) */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -67,7 +66,6 @@ body {
     transform: translateY(0);
 }
 
-/* ====== HEADER ====== */
 .header {
     position: fixed;
     top: 0;
@@ -112,7 +110,6 @@ body {
     color: var(--text-main);
 }
 
-/* ====== HERO SECTION ====== */
 .hero {
     position: relative;
     height: 80vh;
@@ -190,7 +187,6 @@ body {
     box-shadow: 0 0 20px rgba(134, 134, 139, 0.2);
 }
 
-/* ====== PRODUCTS SECTION ====== */
 .products {
     padding: 120px 0 80px 0;
     background-color: var(--bg-dark);
@@ -202,7 +198,6 @@ body {
     gap: 32px;
 }
 
-/* Product Card */
 .product-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -220,7 +215,6 @@ body {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Imagens (Hover Swap & Zoom) */
 .image-container {
     overflow: hidden;
 }
@@ -264,12 +258,10 @@ body {
     transform: scale(1.1);
 }
 
-/* Hover Apply Scale */
 .product-card:hover .img-main {
     transform: scale(1.05); /* Leve zoom suave na imagem principal */
 }
 
-/* Apple Plus Button (+) */
 .tile-button-wrapper {
     position: absolute;
     bottom: 12px;
@@ -309,7 +301,6 @@ body {
 }
 
 
-/* Conteúdo do Produto */
 .product-info {
     display: flex;
     flex-direction: column;
@@ -349,7 +340,6 @@ body {
 	margin-bottom: 24px;
 }
 
-/* Action Buttons */
 .cta-btn {
     display: inline-flex;
     align-items: center;
